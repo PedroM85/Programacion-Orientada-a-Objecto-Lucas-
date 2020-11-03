@@ -1,4 +1,4 @@
-class Cuidad():
+class Ciudad():
     def __init__ (self,provincia,localidad):
         self.provincia=provincia
         self.localidad=localidad
