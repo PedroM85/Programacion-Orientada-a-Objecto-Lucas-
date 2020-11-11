@@ -12,9 +12,10 @@ formusuario['ciudad']=input('Ciudad: ')
 formusuario['password']=getpass.getpass('Password: ')
 formusuario['cpassword']=getpass.getpass('Confirmar Password: ')
 
-if validator.validar_usuario(formusuario)=={}:
+print(validator.validar_usuario(formusuario))
+"""if validator.validar_usuario(formusuario)=={}:
     user=Usuario(formusuario['nombrecom'],formusuario['fechanac'],formusuario['sexo'],formusuario['email'],formusuario['ciudad'],formusuario['password'],formusuario['cpassword'])
     user.save()
     print('usuario registrado exitosamente')
 else:
-    print(validator.validar_usuario(formusuario))
+    print(validator.validar_usuario(formusuario))"""
