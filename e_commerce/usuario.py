@@ -1,7 +1,7 @@
 import base64
 from dba import dba
 class Usuario():
-    def __init__(self,nombrecom, fechanac, sexo, telefono, email,ciudad,password):
+    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password, cpassword):
         self.id_user=id
         self.nombrecom=nombrecom
         self.fechanac=fechanac
@@ -10,6 +10,7 @@ class Usuario():
         self.email=email
         self.ciudad=ciudad
         self.password=self.encriptar_pass(password)
+        self.cpassword=self.encriptar_pass(cpassword)
 
     def get_id_user(self):
         return self.id_user
@@ -31,6 +32,10 @@ class Usuario():
         return self.desencriptar_pass(self.password)
     def set_password(self, password):
         self.password =  self.encriptar_pass(password)
+    def get_cpassword(self):
+        return self.desencriptar_pass(self.cpassword)
+    def set_cpassword(self, cpassword):
+        self.cpassword =  self.encriptar_pass(cpassword)
     def encriptar_pass(self, password):
         return base64.encodebytes(bytes(password, 'utf-8'))
     def desencriptar_pass(self, password):
@@ -50,8 +55,8 @@ class Usuario():
 
 
     def save(self):
-        sql='insert into tbl_usuarios(nombrecom,fechanac,sexo,telefono,email,ciudad) values(%s,%s,%s,%s)'
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad().get_id())
+        sql='insert into tbl_usuarios(nombrecom,fechanac,sexo,telefono,email,ciudad,password,cpassword) values(%s,%s,%s,%s,%s,%s,%s)'
+        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.get_password().get_id())
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
         self.set_id_user(dba.get_cursor().lastrowid)
