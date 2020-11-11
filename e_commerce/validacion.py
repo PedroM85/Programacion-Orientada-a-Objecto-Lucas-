@@ -15,8 +15,19 @@ class validator():
 
         if datosFinales['nombrecom']=='':
             errores['nombrecom']='campo nombre vacio'
-        if datosFinales['email']=='':
-            errores['email']='campo email vacio'
+        if datosFinales['fechanac']=='':
+            errores['fechanac']='campo fecha de nacimiento vacio'
+        if datosFinales['sexo']=='':
+            errores['sexo']='campo sexo vacio'
+        if datosFinales["email"]=="":
+            errores["email"] = "campo email vacio"
+        elif validate_email(datosFinales["email"])==False:
+            errores["email"] = "El email no es un email"
+        if datosFinales['ciudad']=='':
+            errores['ciudad']='campo ciudad vacio'
+        if datosFinales['telefono']=='':
+            errores['telefono']='campo telefono vacio'
+
         
         if len(datosFinales["password"])< 6:
             errores["password"]='password debe tener mas de 6 caracteres'
@@ -30,16 +41,11 @@ class validator():
             errores["password"]='Password debe tener minusculas'
         elif not any(char in SpecialSym for char in datosFinales["password"]):
             errores["password"]='Password debe tener al menos un caracter especial $@#'
-
+        
         if datosFinales["cpassword"]=="":
             errores["cpassword"] = "Hubo error en la confirmacion de contrasenia porque esta vacia"
         elif datosFinales["cpassword"] != datosFinales["password"]:
             errores["cpassword"] = "Password no verifica"
-        
-        if datosFinales["email"]=="":
-            errores["email"] = "campo email vacio"
-        elif validate_email(datosFinales["email"])==False:
-            errores["email"] = "El email no es un email"
 
         if errores=={}:
             sql='select id_user from tbl_usuarios where email=%s'
@@ -51,3 +57,4 @@ class validator():
                 return errores
         
         return errores
+
