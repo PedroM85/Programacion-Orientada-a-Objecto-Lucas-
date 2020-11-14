@@ -1,8 +1,9 @@
 import base64
 from dba import dba
+
 class Usuario():
-    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password, cpassword):
-        self.id_user=id
+    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password):
+        self.id_user=0
         self.nombrecom=nombrecom
         self.fechanac=fechanac
         self.sexo=sexo
@@ -10,7 +11,7 @@ class Usuario():
         self.email=email
         self.ciudad=ciudad
         self.password=self.encriptar_pass(password)
-        self.cpassword=self.encriptar_pass(cpassword)
+        #self.cpassword=self.encriptar_pass(cpassword)
 
     def get_id_user(self):
         return self.id_user
@@ -32,10 +33,10 @@ class Usuario():
         return self.desencriptar_pass(self.password)
     def set_password(self, password):
         self.password =  self.encriptar_pass(password)
-    def get_cpassword(self):
-        return self.desencriptar_pass(self.cpassword)
-    def set_cpassword(self, cpassword):
-        self.cpassword =  self.encriptar_pass(cpassword)
+    #def get_cpassword(self):
+    #    return self.desencriptar_pass(self.cpassword)
+    #def set_cpassword(self, cpassword):
+    #    self.cpassword =  self.encriptar_pass(cpassword)
     def encriptar_pass(self, password):
         return base64.encodebytes(bytes(password, 'utf-8'))
     def desencriptar_pass(self, password):
@@ -55,9 +56,11 @@ class Usuario():
 
 
     def save(self):
-        sql='insert into tbl_usuarios(nombrecom,fechanac,sexo,telefono,email,ciudad,password,cpassword) values(%s,%s,%s,%s,%s,%s,%s)'
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.get_password().get_id())
+        sql="insert into tbl_usuarios(nombrecom,fechanac,sexo,telefono,email,ciudad,password) values(%s,%s,%s,%s,%s,%s,%s)"
+        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.password(),)
         dba.get_cursor().execute(sql,val)
+        print(sql)
+        print(val)
         dba.get_conexion().commit()
         self.set_id_user(dba.get_cursor().lastrowid)
 
@@ -79,3 +82,6 @@ class Usuario():
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
     
+user1 = Usuario("Pedro Maneiro","1985-09-10","M","1121651051","pedromaneirgo@gmail.com","1","pedro1985")
+print(user1.self.password())
+#user1.save()

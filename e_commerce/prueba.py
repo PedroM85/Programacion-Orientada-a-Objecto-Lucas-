@@ -19,3 +19,8 @@ print(validator.validar_usuario(formusuario))
     print('usuario registrado exitosamente')
 else:
     print(validator.validar_usuario(formusuario))"""
+
+#user = Usuario("Pedro Maneiro","1985-09-10","M",1121651051,"pedromaneiro@gmail.com", 1 , "pedro1985")
+#print(user.get_ciudad)
+#user.save()
+#print(user)

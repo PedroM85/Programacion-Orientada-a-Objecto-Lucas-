@@ -1,11 +1,24 @@
 import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="e_commerce"
-)
+dbconfig={
+  "host":"localhost",
+  "user":"root",
+  "password":"",
+  "database":"e_commerce"
+}
 
-mycursor = mydb.cursor()
+class db():
+  def __init__(self):
+    self.conexion=mysql.connector.connect(**dbconfig)
+    self.cursor=self.conexion.cursor()
+    self.commit=self.conexion.commit()
+
+  def get_cursor(self):
+    return self.cursor
+  def get_commit(self):
+    return self.commit
+  def get_conexion(self):
+    return self.conexion
+      
+dba=db()
 
