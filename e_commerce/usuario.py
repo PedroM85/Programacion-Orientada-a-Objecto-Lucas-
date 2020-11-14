@@ -57,7 +57,7 @@ class Usuario():
 
     def save(self):
         sql="insert into tbl_usuarios(nombrecom,fechanac,sexo,telefono,email,ciudad,password) values(%s,%s,%s,%s,%s,%s,%s)"
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.password(),)
+        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.encriptar_pass(self.get_password()),)
         dba.get_cursor().execute(sql,val)
         print(sql)
         print(val)
@@ -82,6 +82,7 @@ class Usuario():
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
     
-user1 = Usuario("Pedro Maneiro","1985-09-10","M","1121651051","pedromaneirgo@gmail.com","1","pedro1985")
-print(user1.self.password())
-#user1.save()
+user1 = Usuario("Pedro Maneiro","1985-09-10","M","1121651051","pedromane3irgo@gmail.com","1","pedro1985")
+
+
+user1.save()

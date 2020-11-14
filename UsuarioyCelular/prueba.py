@@ -15,4 +15,5 @@ user1.agregar_habilidad(habilidad1)
 user1.agregar_habilidad(habilidad2)
 user1.agregar_habilidad(habilidad3)
 
-print(user1.sabeHacer("COMER",8))
+print(user1.get_password())
+print(user1.encriptar_pass(user1.get_password()))
