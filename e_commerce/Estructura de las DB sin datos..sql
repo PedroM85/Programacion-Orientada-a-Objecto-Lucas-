@@ -120,24 +120,6 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
 
 -- Data exporting was unselected.
 
--- Dumping structure for table e_commerce.tbl_usuarios1
-CREATE TABLE IF NOT EXISTS `tbl_usuarios1` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  `apellido` varchar(20) NOT NULL,
-  `fecha_nacimiento` date DEFAULT NULL,
-  `sexo` char(1) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
-  `ciudad` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_user`),
-  UNIQUE KEY `email` (`email`),
-  KEY `ciudad` (`ciudad`),
-  CONSTRAINT `tbl_usuarios1_ibfk_1` FOREIGN KEY (`ciudad`) REFERENCES `tbl_ciudad` (`id_ciudad`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
-
--- Data exporting was unselected.
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
