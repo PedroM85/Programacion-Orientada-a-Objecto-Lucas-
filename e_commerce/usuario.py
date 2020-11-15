@@ -2,7 +2,7 @@ import base64
 from dba import dba
 
 class Usuario():
-    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password):
+    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password, cpassword):
         self.id_user=0
         self.nombrecom=nombrecom
         self.fechanac=fechanac
@@ -11,7 +11,7 @@ class Usuario():
         self.email=email
         self.ciudad=ciudad
         self.password=self.encriptar_pass(password)
-        #self.cpassword=self.encriptar_pass(cpassword)
+        self.cpassword=self.encriptar_pass(cpassword)
 
     def get_id_user(self):
         return self.id_user
@@ -33,10 +33,10 @@ class Usuario():
         return self.desencriptar_pass(self.password)
     def set_password(self, password):
         self.password =  self.encriptar_pass(password)
-    #def get_cpassword(self):
-    #    return self.desencriptar_pass(self.cpassword)
-    #def set_cpassword(self, cpassword):
-    #    self.cpassword =  self.encriptar_pass(cpassword)
+    def get_cpassword(self):
+       return self.desencriptar_pass(self.cpassword)
+    def set_cpassword(self, cpassword):
+       self.cpassword =  self.encriptar_pass(cpassword)
     def encriptar_pass(self, password):
         return base64.encodebytes(bytes(password, 'utf-8'))
     def desencriptar_pass(self, password):
@@ -77,7 +77,7 @@ class Usuario():
         self.set_telefono(dic['telefono'])
         self.set_email(dic['email'])
         self.set_ciudad(dic['ciudad'])
-        sql='update tbl_usuarios set nombrecom=%s,fechanac=%s, sexo=%s, telefono=%s, email=%s, ciudad=%s where id=%s'
+        sql='update tbl_usuarios set nombrecom=%s,fechanac=%s, sexo=%s, telefono=%s, email=%s, ciudad=%s where id_user=%s '
         val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad().get_id())
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
