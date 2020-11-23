@@ -1,8 +1,10 @@
 from dba import dba
 
+
+
 class Marca():
     def __init__(self,nombre):
-        self.id = 22
+        self.id = 23 
         self.nombre=nombre
 
     def get_nombre(self):
@@ -35,5 +37,5 @@ class Marca():
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
 
-marca1 = Marca("Sony 2")
-marca1.delete()
+# marca1 = Marca("")
+# marca1.delete()

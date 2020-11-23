@@ -1,5 +1,5 @@
 {
     "python.languageServer":"Jedi",
-    "python.pythonPath": "C:\\Users\\PedroM\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "C:\\Python39\\python.exe",
     "python.linting.pylintEnabled": false
 }
