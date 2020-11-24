@@ -1,9 +1,10 @@
+from ciudad import Ciudad
+from dba import dba
 import base64
-from db.dba import dba
 
 class Usuario():
     def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad, password ):
-        self.id_user=0
+        self.__id=id
         self.nombrecom=nombrecom
         self.fechanac=fechanac
         self.sexo=sexo
@@ -14,9 +15,9 @@ class Usuario():
 
 
     def get_id_user(self):
-        return self.id_user
-    def set_id_user(self,id_user):
-        self.id_user=id_user
+        return self.__id
+    def set_id_user(self,id):
+        self.__id=id
     def get_nombrecom(self):
         return self.nombrecom
     def set_nombrecom(self, nombrecom):
@@ -64,15 +65,9 @@ class Usuario():
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
 
-    def update(self,dic):
-        self.set_nombrecom(dic['nombrecom'])
-        self.set_fechanac(dic['fechanac'])
-        self.set_sexo(dic['sexo'])
-        self.set_telefono(dic['telefono'])
-        self.set_email(dic['email'])
-        self.set_ciudad(dic['ciudad'])
+    def update(self):     
         sql='update tbl_usuarios set nombrecom=%s,fechanac=%s, sexo=%s, telefono=%s, email=%s, ciudad=%s where id_user=%s '
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad().get_id())
+        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.get_id_user())
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
-    
+

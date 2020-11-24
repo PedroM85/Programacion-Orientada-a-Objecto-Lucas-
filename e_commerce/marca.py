@@ -4,15 +4,15 @@ from dba import dba
 
 class Marca():
     def __init__(self,nombre):
-        self.id = 23 
+        self.id = id
         self.nombre=nombre
 
     def get_nombre(self):
         return self.nombre
     def set_nombre(self,nombre):
         self.nombre=nombre
-    def set_id(self,id_Marca):
-        self.id=id_Marca
+    def set_id(self,id):
+        self.id=id
     def get_id(self):
         return self.id
 

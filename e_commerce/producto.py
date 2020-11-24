@@ -1,5 +1,8 @@
+
+from dba import dba
 class Producto():
     def __init__(self,nombre,modelo,descripcion,precio,categoria,almacen,marca):
+        self.__id=id
         self.nombre=nombre
         self.modelo=modelo
         self.descripcion=descripcion
@@ -8,6 +11,10 @@ class Producto():
         self.almacen=almacen
         self.marca=marca
     
+    def get_id(self):
+        return  self.__id
+    def set_id(self,id):
+        self.__id=id
     def get_nombre(self):
         return  self.nombre
     def set_nombre(self,nombre):
@@ -36,3 +43,10 @@ class Producto():
         return  self.marca
     def set_marca(self,marca):
         self.marca=marca
+
+    def save(self):
+        sql="insert into tbl_producto(nombre,modelo,descripcion,precio,idCategoria,idAlmacen,idMarca) values(%s,%s,%s,%s,%s,%s,%s)"
+        val=(self.get_nombre(),self.get_modelo(),self.get_descripcion(),self.get_precio(),self.get_categoria(),self.get_almacen(),self.get_marca())
+        dba.get_cursor().execute(sql,val)        
+        dba.get_conexion().commit()
+        self.set_id(dba.get_cursor().lastrowid)

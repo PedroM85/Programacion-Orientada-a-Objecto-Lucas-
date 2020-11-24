@@ -1,4 +1,4 @@
-from db.dba import dba
+from dba import dba
 from validate_email import validate_email
 
 class validator():
@@ -49,5 +49,5 @@ class validator():
 
         return errores
 
-        
 validatoruse=validator()
+

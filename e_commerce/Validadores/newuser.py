@@ -1,7 +1,6 @@
-from metodos.usuario import Usuario
-from metodos.validacion import validatoruse
-import getpass 
-
+from usuario import Usuario
+from validacionu import validatoruse
+import getpass
 
 formusuario={}
 formusuario['nombrecom']=input('Nombre completo: ')
