@@ -38,8 +38,8 @@ class Usuario():
     
 
     def save(self):
-        sql="insert into tbl_usuarios(id_user,nombrecom,telefono,email,password) values(%s,%s,%s,%s,%s)"
-        val=("",self.get_nombrecom(),self.get_telefono(),self.get_email(),self.encriptar_pass(self.get_password()),)
+        sql="insert into tbl_usuarios(nombrecom,telefono,email,password) values(%s,%s,%s,%s)"
+        val=(self.get_nombrecom(),self.get_telefono(),self.get_email(),self.encriptar_pass(self.get_password()),)
         dba.get_cursor().execute(sql,val)        
         dba.get_conexion().commit()
         self.set_id_user(dba.get_cursor().lastrowid)

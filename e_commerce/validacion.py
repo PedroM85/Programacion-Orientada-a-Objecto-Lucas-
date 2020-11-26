@@ -6,12 +6,15 @@ class  validator():
     def __init__(self):
         pass
 
+#region Cliente
     def validar_cliente(self,dic):
         datosFinales={}
         errores={}
         for x,y in dic.items():
             datosFinales[x]=y.strip()
 
+        if datosFinales['dni']=='':
+            errores['dni']='campo dni vacio'
         if datosFinales['nombrecom']=='':
             errores['nombrecom']='campo nombre vacio'
         if datosFinales['fechanac']=='':
@@ -26,18 +29,47 @@ class  validator():
             errores["email"] = "El email no es un email"
         if datosFinales['ciudad']=='':
             errores['ciudad']='campo ciudad vacio'
+        if datosFinales['edit'] == "":
+            errores['edit']='campo edit vacio'
 
         if errores=={}:
-            sql='select id_user from tbl_clientes where email=%s'
-            val=(datosFinales['email'],)
+            if datosFinales['edit']=="1":
+                 print("\n")
+            else:          
+                sql='select id_user from tbl_clientes where email=%s'
+                val=(datosFinales['email'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['mail']='el mail ya esta registrado en nuestra base'
+                    return errores
+
+        return errores
+#endregion
+
+#region ClienteBusqueda
+    def edit_cliente(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['dni']=='':
+            errores['dni']='campo dni vacio'
+        
+        if errores=={}:
+            sql='SELECT * from tbl_clientes WHERE dni=%s'
+            val=(datosFinales['dni'],)
             dba.get_cursor().execute(sql,val)
             result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['mail']='el mail ya esta registrado en nuestra base'
+            if result is  None:
+                errores['dni']='el usuario no esta registrado en nuestra base'
                 return errores
 
         return errores
+#endregion
 
+#region login    
     def validar_login(self, dic):        
         sql='select * from tbl_usuarios where email=%s'
         val=(dic['mail'],)
@@ -47,67 +79,161 @@ class  validator():
             return False
         if base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8")== dic['password']: 
             return result[0]
+#endregion
     
+#region Marca
     def validar_marca(self,dic):
         datosFinales={}
         errores={}
         for x,y in dic.items():
             datosFinales[x]=y.strip()
-
+        
+        if datosFinales['id']=="":
+            errores['id']='campo id vacio'
         if datosFinales['nombremar']=='':
             errores['nombremar']='campo marca vacio'
+
         
         if errores=={}:
-            sql='select id_Marca from tbl_marca where nombre=%s'
-            val=(datosFinales['nombremar'],)
-            dba.get_cursor().execute(sql,val)
-            result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['nombremar']='La marca ya se encuentra registrada en nuestra base'
-                return errores
+            if datosFinales['edit']=="1":
+                print("\n")
+            else:           
+                sql='select id_Marca from tbl_marca where nombre=%s'
+                val=(datosFinales['nombremar'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['nombremar']='La marca ya se encuentra registrada en nuestra base'
+                    return errores
 
         return errores
-    
+#endregion
+
+#region Edit Marca
+    def edit_Marca(self,dic):
+        datosFinales={}
+        errores={}
+
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+            if datosFinales['nombre']=='':
+                errores['nombre']='campo nombre vacio'
+            
+            if errores=={}:
+                sql='SELECT * from tbl_marca WHERE nombre=%s'
+                val=(datosFinales['nombre'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is None:
+                    errores['nombre']='La marca no esta registrada en nuestra base'
+                    return errores
+
+            return errores
+#endregion
+
+#region Almacen
     def validar_almace(self,dic):
         datosFinales={}
         errores={}
         for x,y in dic.items():
             datosFinales[x]=y.strip()
 
+        if datosFinales['id']=="":
+            errores['id']='campo id vacio'
         if datosFinales['nombreal']=='':
             errores['nombreal']='campo marca vacio'
         
         if errores=={}:
-            sql='select id_Almacen from tbl_almacen where tipo=%s'
-            val=(datosFinales['nombreal'],)
-            dba.get_cursor().execute(sql,val)
-            result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['nombreal']='El almacen ya se encuentra registrada en nuestra base'
-                return errores
+            if datosFinales['edit']=="1":
+                print("\n")
+            else:    
+                sql='select id_Almacen from tbl_almacen where tipo=%s'
+                val=(datosFinales['nombreal'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['nombreal']='El almacen ya se encuentra registrada en nuestra base'
+                    return errores
 
         return errores
+#endregion 
 
+#region Edit Almacen
+    def edit_Almacen(self,dic):
+        datosFinales={}
+        errores={}
+
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+            if datosFinales['nombre']=='':
+                errores['nombre']='campo nombre vacio'
+            
+            if errores=={}:
+                sql='SELECT * from tbl_almacen WHERE tipo=%s'
+                val=(datosFinales['nombre'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is None:
+                    errores['nombre']='El Almance no esta registrada en nuestra base'
+                    return errores
+
+            return errores
+#endregion
+
+#region Categoria
     def validar_cate(self,dic):
         datosFinales={}
         errores={}
         for x,y in dic.items():
             datosFinales[x]=y.strip()
 
+        if datosFinales['id']=="":
+            errores['id']='campo id vacio'
         if datosFinales['nombrecate']=='':
             errores['nombrecate']='campo categoria vacio'
         
         if errores=={}:
-            sql='select id_Categoria from tbl_categoria where tipo=%s'
-            val=(datosFinales['nombrecate'],)
-            dba.get_cursor().execute(sql,val)
-            result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['nombrecate']='La categoria ya se encuentra registrada en nuestra base'
-                return errores
+            if datosFinales['edit']=="1":
+                print("\n")
+            else:    
+                sql='select id_Categoria from tbl_categoria where tipo=%s'
+                val=(datosFinales['nombrecate'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['nombrecate']='La categoria ya se encuentra registrada en nuestra base'
+                    return errores
 
         return errores
-    
+#endregion 
+
+#region Edit Categoria
+    def edit_Categoria(self,dic):
+        datosFinales={}
+        errores={}
+
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+            if datosFinales['nombre']=='':
+                errores['nombre']='campo nombre vacio'
+            
+            if errores=={}:
+                sql='SELECT * from tbl_categoria WHERE tipo=%s'
+                val=(datosFinales['nombre'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is None:
+                    errores['nombre']='La Categoria no esta registrada en nuestra base'
+                    return errores
+
+            return errores
+
+#endregion
+
+#region Cuidad
     def validar_ciu(self,dic):
         datosFinales={}
         errores={}
@@ -126,7 +252,32 @@ class  validator():
                 errores['nombreal']='La ciudad ya se encuentra registrada en nuestra base'
                 return errores
         return errores
-    
+#endregion
+
+#region Edit Ciudad
+    def edit_Ciudad(self,dic):
+        datosFinales={}
+        errores={}
+
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+            if datosFinales['nombre']=='':
+                errores['nombre']='campo ciudad vacio'
+            
+            if errores=={}:
+                sql='SELECT * from tbl_ciudad WHERE nombre=%s'
+                val=(datosFinales['nombre'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is None:
+                    errores['nombre']='La ciudad no esta registrada en nuestra base'
+                    return errores
+
+            return errores
+#endregion
+
+#region Compra
     def validar_compra(self,dic):
         datosFinales={}
         errores={}
@@ -153,10 +304,11 @@ class  validator():
                 errores['id_user']='El usuario no esta registrado en nuestra base'
                 #from presentacion.encabezado import menuAgregar
                 return errores
-      
-        
+              
         return errores
-    
+#endregion
+
+#region Metodo_Pago    
     def validar_mtd(self,dic):
         datosFinales={}
         errores={}
@@ -176,7 +328,9 @@ class  validator():
                 return errores
 
         return errores
-    
+#endregion
+
+#region Producto    
     def validar_pro(self,dic):
         datosFinales={}
         errores={}
@@ -208,7 +362,9 @@ class  validator():
                 return errores
 
         return errores
-    
+#endregion
+
+#region Usuario
     def validar_usuario(self,dic):
         datosFinales={}
         errores={}
@@ -244,14 +400,17 @@ class  validator():
                 return errores
 
         return errores
+#endregion
             
 
 validator=validator()
 
 # sql='select * from tbl_usuarios where email=%s'
-# val=("pedrito@gmail.com",)
+# val=("pedrit1o@gmail.com",)
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchall()
+# print(type(result))
+# print(result)
 # print(result[0][4].strip())
 # print(base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8"))
 
@@ -259,8 +418,8 @@ validator=validator()
 # result=dba.get_cursor().fetchall()
 # print(result)
 
-# sql='select * from tbl_clientes where id_user=%s'
-# val=(189,)
+# sql='SELECT * from tbl_almacen WHERE tipo=%s'
+# val=("vidriwe",)
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchone()
 # print(result)

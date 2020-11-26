@@ -7,7 +7,10 @@ from Validadores import newcompra
 from Validadores import newmtdpago
 from Validadores import newproducto
 from Validadores import newuser
+from Validadores import edit
 from colorama import Fore, init
+from os import system
+
 init()
 
 def menuPrincipal():
@@ -91,7 +94,28 @@ def opcion(opcion):
                 menuModificar()
                 ingreso()
                 opcion2=int(input())
-                break
+
+                if opcion2==1:
+                    edit.Edit_Cliente()
+                if opcion2==2:
+                    edit.Edit_Marcas()
+                if opcion2==3:
+                    edit.Edit_Almacen()
+                if opcion2==4:
+                    edit.Edit_Categoria()
+                if opcion2==5:
+                    edit.Edit_Ciudad()
+                if opcion2==6:
+                    break
+                if opcion2==7:
+                    break
+                if opcion2==8:
+                    break                
+                if opcion2==0:
+                    menuPrincipal()
+                    ingreso()                
+                    opcion=int(input())
+
                 # import listaciudad
                 # import listaruser
                 # from Validadores import edituser
@@ -102,8 +126,10 @@ def opcion(opcion):
                 break
             elif opcion == 0:
                 salir = True
+                system("cls")
             else:
                 salir = True
+                system("cls")
 
         except ValueError as identifier:
             menu.ingresoError()

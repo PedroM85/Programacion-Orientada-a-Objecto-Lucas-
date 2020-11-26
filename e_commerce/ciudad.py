@@ -1,7 +1,7 @@
 from dba import dba
 
 class Ciudad():
-    def __init__ (self,provincia):
+    def __init__ (self,id,provincia):
         self.__id=id
         self.provincia=provincia
        
@@ -35,3 +35,10 @@ class Ciudad():
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
 
+    def select(self):
+        sql='SELECT * from tbl_ciudad WHERE nombre=%s'
+        val=(self.get_provincia(),)
+        dba.get_cursor().execute(sql,val)
+        result=dba.get_cursor().fetchone()
+        self.set_id(result[0])
+        return result

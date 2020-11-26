@@ -2,8 +2,9 @@ from ciudad import Ciudad
 from dba import dba
 
 class Cliente():
-    def __init__(self,nombrecom, fechanac, sexo, telefono, email, ciudad ):
+    def __init__(self,dni,nombrecom, fechanac, sexo, telefono, email, ciudad ):
         self.__id=id
+        self.dni=dni
         self.nombrecom=nombrecom
         self.fechanac=fechanac
         self.sexo=sexo
@@ -16,6 +17,10 @@ class Cliente():
         return self.__id
     def set_id_user(self,id):
         self.__id=id
+    def get_dni(self):
+        return self.dni
+    def set_dni(self,dni):
+        self.dni=dni
     def get_nombrecom(self):
         return self.nombrecom
     def set_nombrecom(self, nombrecom):
@@ -43,8 +48,8 @@ class Cliente():
 
 
     def save(self):
-        sql="insert into tbl_clientes(nombrecom,fechanac,sexo,telefono,email,ciudad) values(%s,%s,%s,%s,%s,%s)"
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad())
+        sql="insert into tbl_clientes(dni,nombrecom,fechanac,sexo,telefono,email,ciudad) values(%s,%s,%s,%s,%s,%s,%s)"
+        val=(self.get_dni(),self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad())
         dba.get_cursor().execute(sql,val)        
         dba.get_conexion().commit()
         self.set_id_user(dba.get_cursor().lastrowid)
@@ -56,10 +61,17 @@ class Cliente():
         dba.get_conexion().commit()
 
     def update(self):     
-        sql='update tbl_usuarios set nombrecom=%s,fechanac=%s, sexo=%s, telefono=%s, email=%s, ciudad=%s where id_user=%s '
-        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.get_id_user())
+        sql='update tbl_clientes set nombrecom=%s,fechanac=%s, sexo=%s, telefono=%s, email=%s, ciudad=%s where dni=%s '
+        val=(self.get_nombrecom(),self.get_fechanac(),self.get_sexo(),self.get_telefono(),self.get_email(),self.get_ciudad(),self.get_dni())
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
+    
+    def select(self):
+        sql='SELECT * from tbl_clientes WHERE dni=%s'
+        val=(self.get_dni(),)
+        dba.get_cursor().execute(sql,val)
+        result=dba.get_cursor().fetchone()
+        print(result)
 
 
 

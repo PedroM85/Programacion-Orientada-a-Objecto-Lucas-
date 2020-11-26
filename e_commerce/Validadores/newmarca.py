@@ -4,7 +4,7 @@ from validacion import validator
 def Marca():
     formarca={}
     formarca['nombremar']=input('Nombre Marca: ')
-
+    formarca['edit']="0"
 
     if validator.validar_marca(formarca)=={}:
         marcas=Marcas(formarca['nombremar'])

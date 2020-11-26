@@ -1,7 +1,7 @@
 from dba import dba
 
 class Almacenes():
-    def __init__(self,tipo):
+    def __init__(self,id,tipo):
         self.__id=id
         self.tipo=tipo
 
@@ -33,4 +33,12 @@ class Almacenes():
         val=(self.get_tipo(),self.get_id(),)
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
+    
+    def select(self):
+        sql='SELECT * from tbl_almacen WHERE tipo=%s'
+        val=(self.get_tipo(),)
+        dba.get_cursor().execute(sql,val)
+        result=dba.get_cursor().fetchone()
+        self.set_id(result[0])
+        return result
     
