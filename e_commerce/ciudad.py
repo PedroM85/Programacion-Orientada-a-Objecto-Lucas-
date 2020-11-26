@@ -2,7 +2,7 @@ from dba import dba
 
 class Ciudad():
     def __init__ (self,provincia):
-        self.__id=27
+        self.__id=id
         self.provincia=provincia
        
     

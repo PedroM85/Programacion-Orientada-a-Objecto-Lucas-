@@ -1,14 +1,17 @@
-from marca import Marca
-from validacionm import validatormar
+from marca import Marcas
+from validacion import validator
 
-formarca={}
-formarca['nombremar']=input('Nombre Marca: ')
+def Marca():
+    formarca={}
+    formarca['nombremar']=input('Nombre Marca: ')
 
 
-if validatormar.validar_marca(formarca)=={}:
-    marca=Marca(formarca['nombremar'])
-    marca.save()
-    print('Marca registrado exitosamente')
-else:
-    print(validatormar.validar_marca(formarca))
+    if validator.validar_marca(formarca)=={}:
+        marcas=Marcas(formarca['nombremar'])
+        marcas.save()
+        print('Marca registrado exitosamente')
+    else:
+        print(validator.validar_marca(formarca))
 
+
+#Marca()

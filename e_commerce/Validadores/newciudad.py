@@ -1,15 +1,16 @@
 from ciudad import Ciudad
-from validacionciu import validatorciu
+from validacion import validator
 
-formciu={}
-formciu['nombreal']=input('Nombre de la Ciudad: ')
+def ciudads():
+    formciu={}
+    formciu['nombreal']=input('Nombre de la Ciudad: ')
 
 
-if validatorciu.validar_ciu(formciu)=={}:
-    Ciudad=Ciudad(formciu['nombreal'])
-    Ciudad.save()
-    print('Ciudad registrado exitosamente')
-else:
-    print(validatorciu.validar_ciu(formciu))
+    if validator.validar_ciu(formciu)=={}:
+        Ciudad1=Ciudad(formciu['nombreal'])
+        Ciudad1.save()
+        print('Ciudad registrado exitosamente')
+    else:
+        print(validator.validar_ciu(formciu))
 
 

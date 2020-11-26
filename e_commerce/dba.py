@@ -9,6 +9,7 @@ dbconfig={
 
 class db():
   def __init__(self):
+  
     self.conexion=mysql.connector.connect(**dbconfig)
     self.cursor=self.conexion.cursor()
     self.commit=self.conexion.commit()
@@ -19,6 +20,6 @@ class db():
     return self.commit
   def get_conexion(self):
     return self.conexion
-      
+
 dba=db()
 

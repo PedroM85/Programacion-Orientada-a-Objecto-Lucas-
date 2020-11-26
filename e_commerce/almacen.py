@@ -1,6 +1,6 @@
 from dba import dba
 
-class Almacen():
+class Almacenes():
     def __init__(self,tipo):
         self.__id=id
         self.tipo=tipo

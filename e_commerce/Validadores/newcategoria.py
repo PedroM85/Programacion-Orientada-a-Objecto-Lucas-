@@ -1,14 +1,15 @@
 from categoria import Categoria
-from validacioncate import validatorcate
+from validacion import validator
 
-formcate={}
-formcate['nombrecate']=input('Nombre Categoria: ')
+def categorias():
+    formcate={}
+    formcate['nombrecate']=input('Nombre Categoria: ')
 
 
-if validatorcate.validar_cate(formcate)=={}:
-    Cate=Categoria(formcate['nombrecate'])
-    Cate.save()
-    print('Categoria registrado exitosamente')
-else:
-    print(validatorcate.validar_cate(formcate))
+    if validator.validar_cate(formcate)=={}:
+        Cate=Categoria(formcate['nombrecate'])
+        Cate.save()
+        print('Categoria registrado exitosamente')
+    else:
+        print(validator.validar_cate(formcate))
 

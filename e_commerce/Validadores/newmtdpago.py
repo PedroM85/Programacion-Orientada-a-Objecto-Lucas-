@@ -1,15 +1,16 @@
 from methpago import MethPago
-from validacionmtdpago import validatormtdpago
+from validacion import validator
 
-formmtdpago={}
-formmtdpago['nombreal']=input('Tipo de Metodo: ')
+def mtdpago():
+    formmtdpago={}
+    formmtdpago['nombreal']=input('Tipo de Metodo: ')
 
 
-if validatormtdpago.validar_mtd(formmtdpago)=={}:
-    mtdpago=MethPago(formmtdpago['nombreal'])
-    mtdpago.save()
-    print('Metodo registrado exitosamente')
-else:
-    print(validatormtdpago.validar_mtd(formmtdpago))
+    if validator.validar_mtd(formmtdpago)=={}:
+        mtdpago=MethPago(formmtdpago['nombreal'])
+        mtdpago.save()
+        print('Metodo de pago registrado exitosamente')
+    else:
+        print(validator.validar_mtd(formmtdpago))
 
 

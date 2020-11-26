@@ -2,17 +2,17 @@ from dba import dba
 
 class MethPago():
     def __init__(self,tipo):
-        self.id = 0
+        self.__id = id
         self.tipo=tipo
 
     def get_tipo(self):
         return self.tipo
     def set_tipo(self,tipo):
         self.nombre=tipo
-    def set_id(self,id_methpago):
-        self.id=id_methpago
+    def set_id(self,id):
+        self.__id=id
     def get_id(self):
-        return self.id
+        return self.__id
 
     def save(self):
         sql="insert into tbl_methpago(tipo) values(%s)"
