@@ -32,18 +32,18 @@ def menuAgregar():
 
 def menuModificar():
     print("\n\n******************************************************************************")
-    print("             1.- Modificar Cliente              |         5.- Modificar Ciudad")
-    print("             2.- Modificar Marca                |         6.- Modificar Mtd Pago")
-    print("             3.- Modificar Almacen              |         7.- Modificar Producto")
-    print("             4.- Modificar Categoria            |         0.- Menu Principal ")
+    print("             1.- Modificar Cliente           |         5.- Modificar Ciudad")
+    print("             2.- Modificar Marca             |         6.- Modificar Mtd Pago")
+    print("             3.- Modificar Almacen           |         7.- Modificar Producto")
+    print("             4.- Modificar Categoria         |         0.- Menu Principal ")
     print("******************************************************************************")
 
 def menuEliminar():
     print("\n\n******************************************************************************")
-    print("             1.- Eliminar Cliente              |         5.- Eliminar Ciudad")
-    print("             2.- Eliminar Marca                |         6.- Eliminar Mtd Pago")
-    print("             3.- Eliminar Almacen              |         7.- Eliminar Producto")
-    print("             4.- Eliminar Categoria            |         0.- Menu Principal ")
+    print("             1.- Eliminar Cliente            |         5.- Eliminar Ciudad")
+    print("             2.- Eliminar Marca              |         6.- Eliminar Mtd Pago")
+    print("             3.- Eliminar Almacen            |         7.- Eliminar Producto")
+    print("             4.- Eliminar Categoria          |         0.- Menu Principal ")
     print("******************************************************************************")
 
 
@@ -106,12 +106,14 @@ def opcion(opcion):
                 if opcion2==5:
                     edit.Edit_Ciudad()
                 if opcion2==6:
-                    break
+                    edit.Edit_methpago()
                 if opcion2==7:
-                    break
-                if opcion2==8:
-                    break                
+                    edit.Edit_Producto()
                 if opcion2==0:
+                    menuPrincipal()
+                    ingreso()                
+                    opcion=int(input())
+                else:
                     menuPrincipal()
                     ingreso()                
                     opcion=int(input())

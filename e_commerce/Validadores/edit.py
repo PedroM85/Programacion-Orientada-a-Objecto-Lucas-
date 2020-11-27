@@ -5,6 +5,8 @@ from almacen import Almacenes
 from validacion import validator
 from categoria import Categoria
 from ciudad import Ciudad
+from methpago import MethPago
+from producto import Producto
 
 #region Cliente
 def Edit_Cliente():
@@ -133,7 +135,7 @@ def Edit_Categoria():
 
 #endregion
 
-#region Categoria
+#region Ciudad
 def Edit_Ciudad():
 
     formCiudad={}
@@ -161,5 +163,76 @@ def Edit_Ciudad():
             print(validator.validar_ciu(formeditCategoria))
     else:
         print(validator.edit_Ciudad(formCiudad))
+
+#endregion
+
+#region Metodo pago
+def Edit_methpago():
+
+    formmethpago={}
+    formmethpago['nombre']=(input("Ingrese Metodo de pago: ").capitalize())
+    
+    if validator.edit_Methpago(formmethpago)=={}:
+        user=MethPago("",formmethpago['nombre'])
+        user.select()
+        print(user.select())
+        a=user.select()
+        # print(a[0])
+        print("\n Metodo de pago encontrada")
+        
+        
+        formeditmethpago={}
+        formeditmethpago['id']=str(a[0])
+        formeditmethpago['nombreal']=(input("Ingrese nueva Metodo de pago: ").capitalize())
+        formeditmethpago['edit']="1"
+
+        if validator.validar_mtd(formeditmethpago)=={}:
+            user=MethPago(formeditmethpago['id'],formeditmethpago['nombreal'])
+            user.update()
+            print("Metodo de pago Actualizado exitosamente")
+        else:
+            print(validator.validar_mtd(formeditmethpago))
+    else:
+        print(validator.edit_Methpago(formmethpago))
+
+#endregion
+
+#region Producto
+def Edit_Producto():
+
+    formProducto={}
+    formProducto['nombrereal']=input("Ingrese Nombre del producto: ")
+    formProducto['modelo']=input("Ingrese Modelo: ")
+ 
+    if validator.edit_pro(formProducto)=={}:
+        user=Producto("",formProducto['nombrereal'],formProducto['modelo'],"","","","","",)
+        user.select()
+        a=user.select()
+        print("ID: "+str(a[0])+" - Producto: "+str(a[1])+" - Modelo: "+str(a[2])+" - Descripcion: "+str(a[3])+" - Precio: "+str(a[4])+" - Categoria: "+ str(a[5])+" - Almacen: "+str(a[6])+" - Marca: "+str(a[7]))
+        # print(user.select())
+        print("\n Producto encontrado")
+
+        formeditProducto={}
+        formeditProducto['id']=str(a[0])
+        formeditProducto['nombrereal']=input('Nombre del Producto: ')
+        formeditProducto['modelo']=input('Modelo del Producto: ')
+        formeditProducto['descripcion']=(input('Descripcion del Producto: ').capitalize())
+        formeditProducto['precio']=input('Precio del Producto: ')
+        formeditProducto['categoria']=input('Categoria del Producto: ')
+        formeditProducto['almacen']=input('Almacen del Producto: ')
+        formeditProducto['marca']=input('Marca del Producto: ')
+        formeditProducto['edit']="1"
+        
+        if validator.validar_pro(formeditProducto)=={}:
+            
+            user1=Producto(formeditProducto['id'],formeditProducto['nombrereal'],formeditProducto['modelo'],formeditProducto['descripcion'],formeditProducto['precio'],formeditProducto['categoria'],formeditProducto['almacen'],formeditProducto['marca'])
+            user1.update()
+            print('Producto Actualizado exitosamente')
+        else:
+            print(validator.validar_pro(formeditProducto))
+
+
+    else:
+        print(validator.edit_pro(formProducto))
 
 #endregion

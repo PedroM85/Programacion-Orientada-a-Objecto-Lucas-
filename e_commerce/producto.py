@@ -1,7 +1,7 @@
 
 from dba import dba
 class Producto():
-    def __init__(self,nombre,modelo,descripcion,precio,categoria,almacen,marca):
+    def __init__(self,id,nombre,modelo,descripcion,precio,categoria,almacen,marca):
         self.__id=id
         self.nombre=nombre
         self.modelo=modelo
@@ -50,3 +50,18 @@ class Producto():
         dba.get_cursor().execute(sql,val)        
         dba.get_conexion().commit()
         self.set_id(dba.get_cursor().lastrowid)
+    
+    def update(self):
+        sql="update tbl_producto set nombre=%s,modelo=%s,descripcion=%s,precio=%s,idcategoria=%s,idalmacen=%s,idmarca=%s where id_producto=%s "
+        val=(self.get_nombre(),self.get_modelo(),self.get_descripcion(),self.get_precio(),self.get_categoria(),self.get_almacen(),self.get_marca(),self.get_id())
+        dba.get_cursor().execute(sql,val)
+        dba.get_conexion().commit()
+        
+    
+    def select(self):
+        sql='SELECT * from tbl_producto WHERE nombre=%s and modelo=%s'
+        val=(self.get_nombre(),self.get_modelo())
+        dba.get_cursor().execute(sql,val)
+        result=dba.get_cursor().fetchone()
+        self.set_id(result[0])
+        return result

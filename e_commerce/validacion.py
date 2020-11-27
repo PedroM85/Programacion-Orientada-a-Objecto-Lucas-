@@ -330,6 +330,29 @@ class  validator():
         return errores
 #endregion
 
+#region Edit methpago
+    def edit_Methpago(self,dic):
+        datosFinales={}
+        errores={}
+
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+            if datosFinales['nombre']=='':
+                errores['nombre']='campo Metodo de pago vacio'
+            
+            if errores=={}:
+                sql='SELECT * from tbl_methpago WHERE tipo=%s'
+                val=(datosFinales['nombre'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is None:
+                    errores['nombre']='El metodo de pago no esta registrada en nuestra base'
+                    return errores
+
+            return errores
+#endregion
+
 #region Producto    
     def validar_pro(self,dic):
         datosFinales={}
@@ -353,12 +376,49 @@ class  validator():
             errores['marca']='campo marca vacio'
 
         if errores=={}:
-            sql='select id_Producto from tbl_producto where nombre=%s'
-            val=(datosFinales['nombrereal'],)
+            if datosFinales['edit']=="1":
+                print("\n")
+            else:
+                sql='select id_Producto from tbl_producto where nombre=%s'
+                val=(datosFinales['nombrereal'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['nombrereal']='El producto ya se encuentra registrada en nuestra base'
+                    return errores
+
+        return errores
+#endregion
+
+#region Edit Producto    
+    def edit_pro(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['nombrereal']=='':
+            errores['nombrereal']='campo nombre vacio'
+        if datosFinales['modelo']=='':
+            errores['modelo']='campo modelo vacio'
+        # if datosFinales['descripcion']=='':
+        #     errores['descripcion']='campo descripcion vacio'
+        # if datosFinales['precio']=='':
+        #     errores['precio']='campo precio vacio'
+        # if datosFinales['categoria']=='':
+        #     errores['categoria']='campo categoria vacio'
+        # if datosFinales['almacen']=='':
+        #     errores['almace']='campo almacen vacio'
+        # if datosFinales['marca']=='':
+        #     errores['marca']='campo marca vacio'
+
+        if errores=={}:
+            sql='select id_Producto from tbl_producto where nombre=%s and modelo=%s'
+            val=(datosFinales['nombrereal'],datosFinales['modelo'],)
             dba.get_cursor().execute(sql,val)
             result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['nombrereal']='El producto ya se encuentra registrada en nuestra base'
+            if result is  None:
+                errores['nombrereal']='El producto no esta registrada en nuestra base'
                 return errores
 
         return errores
@@ -418,8 +478,8 @@ validator=validator()
 # result=dba.get_cursor().fetchall()
 # print(result)
 
-# sql='SELECT * from tbl_almacen WHERE tipo=%s'
-# val=("vidriwe",)
+# sql='SELECT * from tbl_producto WHERE nombre=%s and modelo=%s'
+# val=("Cerveza","rubia")
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchone()
 # print(result)

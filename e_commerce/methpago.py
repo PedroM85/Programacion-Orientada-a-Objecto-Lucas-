@@ -1,7 +1,7 @@
 from dba import dba
 
 class MethPago():
-    def __init__(self,tipo):
+    def __init__(self,id,tipo):
         self.__id = id
         self.tipo=tipo
 
@@ -34,6 +34,14 @@ class MethPago():
         print(val)
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
+    
+    def select(self):
+        sql='SELECT * from tbl_methpago WHERE tipo=%s'
+        val=(self.get_tipo(),)
+        dba.get_cursor().execute(sql,val)
+        result=dba.get_cursor().fetchone()
+        self.set_id(result[0])
+        return result
 
 # methpago1 = MethPago("Sony")
 # methpago1.delete()
