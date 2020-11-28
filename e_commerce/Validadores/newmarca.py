@@ -7,7 +7,7 @@ def Marca():
     formarca['edit']="0"
 
     if validator.validar_marca(formarca)=={}:
-        marcas=Marcas(formarca['nombremar'])
+        marcas=Marcas("",formarca['nombremar'])
         marcas.save()
         print('Marca registrado exitosamente')
     else:

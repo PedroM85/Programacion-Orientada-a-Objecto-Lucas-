@@ -1,5 +1,6 @@
 
 from dba import dba
+
 class Producto():
     def __init__(self,id,nombre,modelo,descripcion,precio,categoria,almacen,marca):
         self.__id=id

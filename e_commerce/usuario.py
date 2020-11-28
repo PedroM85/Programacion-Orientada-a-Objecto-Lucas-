@@ -17,8 +17,7 @@ class Usuario():
     def get_nombrecom(self):
         return self.nombrecom
     def set_nombrecom(self, nombrecom):
-        self.nombrecom=nombrecom
-    
+        self.nombrecom=nombrecom    
     def get_password(self):
         return self.desencriptar_pass(self.password)
     def set_password(self, password):

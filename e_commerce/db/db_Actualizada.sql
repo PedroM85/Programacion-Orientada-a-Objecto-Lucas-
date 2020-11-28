@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `tbl_almacen` (
   `id_Almacen` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_Almacen`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_almacen: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_almacen` DISABLE KEYS */;
@@ -32,7 +32,8 @@ INSERT IGNORE INTO `tbl_almacen` (`id_Almacen`, `tipo`) VALUES
 	(3, 'Mostrador'),
 	(5, 'Exhibidor'),
 	(6, 'asd'),
-	(7, 'sd2s');
+	(7, 'sd2s'),
+	(8, 'Pruebadevenano');
 /*!40000 ALTER TABLE `tbl_almacen` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_categoria
@@ -40,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tbl_categoria` (
   `id_Categoria` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_Categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_categoria: ~24 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
@@ -50,7 +51,7 @@ INSERT IGNORE INTO `tbl_categoria` (`id_Categoria`, `tipo`) VALUES
 	(3, 'Celulares'),
 	(4, 'Aires Acondicionados'),
 	(5, 'Informatica'),
-	(6, 'Comida'),
+	(6, 'Comida 2.0'),
 	(7, 'Bebida'),
 	(8, 'Fruta'),
 	(9, 'Carnes'),
@@ -70,7 +71,8 @@ INSERT IGNORE INTO `tbl_categoria` (`id_Categoria`, `tipo`) VALUES
 	(23, 'Notebooks'),
 	(24, 'Televisores'),
 	(26, 'casa'),
-	(27, 'Alquiler');
+	(27, 'Alquiler'),
+	(28, 'Prueba agregar y editar');
 /*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_ciudad
@@ -78,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `tbl_ciudad` (
   `id_ciudad` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
   PRIMARY KEY (`id_ciudad`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_ciudad: ~25 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_ciudad` DISABLE KEYS */;
@@ -108,7 +110,8 @@ INSERT IGNORE INTO `tbl_ciudad` (`id_ciudad`, `nombre`) VALUES
 	(24, 'TIERRA DE FUEGO'),
 	(25, 'TUCUMAN'),
 	(31, 'Caba 2.1'),
-	(32, '123');
+	(32, '123'),
+	(33, 'Prueba agregar y editar');
 /*!40000 ALTER TABLE `tbl_ciudad` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_clientes
@@ -126,9 +129,9 @@ CREATE TABLE IF NOT EXISTS `tbl_clientes` (
   UNIQUE KEY `dni` (`dni`),
   KEY `ciudad` (`ciudad`),
   CONSTRAINT `tbl_clientes_ibfk_1` FOREIGN KEY (`ciudad`) REFERENCES `tbl_ciudad` (`id_ciudad`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_clientes: ~32 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_clientes: ~33 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_clientes` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_clientes` (`id_user`, `dni`, `nombrecom`, `fechanac`, `sexo`, `telefono`, `email`, `ciudad`) VALUES
 	(1, NULL, 'Nacho Perez', '1985-03-08', 'M', '1232342312', 'telecompra@gmail.com', 1),
@@ -163,7 +166,8 @@ INSERT IGNORE INTO `tbl_clientes` (`id_user`, `dni`, `nombrecom`, `fechanac`, `s
 	(31, NULL, 'asd2', '2020-11-22', 'F', '1234567', '1234@gmail.com', 2),
 	(32, NULL, 'Pedrito ito tio', '2020-11-20', 'M', '11234132', 'pedrito@gmail.com', 2),
 	(33, NULL, 'Karina', '2020-11-17', 'F', '1122334411', 'karina@gmail.com', 1),
-	(34, '95896377', 'Prueba Menu', '2020-11-20', 'F', '1122334455', 'test@test.com', 2);
+	(34, '95896377', 'Prueba Menu', '2020-11-20', 'F', '1122334455', 'test@test.com', 2),
+	(40, '95896375', 'Vanessa', '2020-11-23', 'F', '112233112', 'vane@vane.com', 1);
 /*!40000 ALTER TABLE `tbl_clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_compra
@@ -181,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `tbl_compra` (
   CONSTRAINT `FK_tbl_compra_tbl_clientes` FOREIGN KEY (`id_user`) REFERENCES `tbl_clientes` (`id_user`) ON UPDATE NO ACTION,
   CONSTRAINT `tbl_compra_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `tbl_producto` (`id_Producto`),
   CONSTRAINT `tbl_compra_ibfk_3` FOREIGN KEY (`id_methpago`) REFERENCES `tbl_methpago` (`id_methpago`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_compra: ~23 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_compra` DISABLE KEYS */;
@@ -208,7 +212,8 @@ INSERT IGNORE INTO `tbl_compra` (`id_compra`, `id_user`, `id_producto`, `id_meth
 	(20, 21, 20, 5, 0.000, 16000.000),
 	(22, 3, 3, 3, 1.000, 44000.000),
 	(23, 32, 2, 4, 2.000, 3.000),
-	(29, 3, 2, 4, 1.000, 2.000);
+	(29, 3, 2, 4, 1.000, 2.000),
+	(30, 32, 2, 2, 145.000, 23.000);
 /*!40000 ALTER TABLE `tbl_compra` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_marca
@@ -238,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `tbl_methpago` (
   `id_methpago` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`id_methpago`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_methpago: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_methpago` DISABLE KEYS */;
@@ -249,7 +254,8 @@ INSERT IGNORE INTO `tbl_methpago` (`id_methpago`, `tipo`) VALUES
 	(4, 'GIFT CARD'),
 	(5, 'MERCADOPAGO'),
 	(7, 'pagofacil'),
-	(8, 'dhrc');
+	(8, 'Rapipago'),
+	(9, 'Especio once');
 /*!40000 ALTER TABLE `tbl_methpago` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_producto
@@ -263,13 +269,14 @@ CREATE TABLE IF NOT EXISTS `tbl_producto` (
   `idAlmacen` int(11) DEFAULT NULL,
   `idMarca` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_Producto`),
+  UNIQUE KEY `modelo` (`modelo`),
   KEY `idCategoria` (`idCategoria`),
   KEY `idAlmacen` (`idAlmacen`),
   KEY `idMarca` (`idMarca`),
   CONSTRAINT `tbl_producto_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `tbl_categoria` (`id_Categoria`),
   CONSTRAINT `tbl_producto_ibfk_2` FOREIGN KEY (`idAlmacen`) REFERENCES `tbl_almacen` (`id_Almacen`),
   CONSTRAINT `tbl_producto_ibfk_3` FOREIGN KEY (`idMarca`) REFERENCES `tbl_marca` (`id_Marca`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_producto: ~29 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_producto` DISABLE KEYS */;
@@ -288,22 +295,23 @@ INSERT IGNORE INTO `tbl_producto` (`id_Producto`, `nombre`, `modelo`, `descripci
 	(13, 'Aire Split', 'P45533', '33000 Frigorias', 26000.000, 4, 2, 10),
 	(15, 'Cocina', 'A455SSQ', 'A gas', 20000.000, 15, 1, 3),
 	(16, 'Anafe', '466ssA', 'Electrico', 35000.000, 15, 3, 10),
-	(17, 'Heladera No Frost', '41ASDF', '260 Lt', 28000.000, 17, 1, 5),
+	(17, 'Heladera No Frost', '41ASDFA', '260 Lt', 28000.000, 17, 1, 5),
 	(18, 'Heladera', 'HSAD99', '260 lt', 40000.000, 17, 1, 6),
 	(19, 'Samsung A10', 'SAS9987', '64gb Negro', 26000.000, 3, 3, 2),
 	(20, 'Samsung J7', 'J7SAAA', '32gb Blanco', 16000.000, 3, 3, 2),
 	(21, 'Cerveza', 'cerveza', 'rubia 1L', 180.000, 7, 3, 3),
-	(22, 'Cerveza', 'cerveza', 'negra 1L', 170.000, 7, 3, 9),
-	(23, 'Cerveza', 'cerveza', 'rubia 1L', 180.000, 7, 3, 5),
+	(22, 'Cerveza', 'Rubia', 'Rubia 1l', 175.000, 7, 3, 9),
+	(23, 'Cerveza', 'pinta', 'rubia 1L', 180.000, 7, 3, 5),
 	(24, 'Cola', 'Coca-Cola', '1,25L', 70.000, 10, 3, 1),
-	(25, 'Cola', 'Coca-Cola', '2,25L', 125.000, 10, 3, 2),
+	(25, 'Cola', 'Coca-ColaA', '2,25L', 125.000, 10, 3, 2),
 	(26, 'Microondas', 'MS5556', 'Negro', 18000.000, 18, 1, 3),
 	(27, 'Samsung Galaxy', 'A10SA', '32GB, Negro', 21000.000, 3, 3, 2),
 	(28, 'Motorola E6', 'ES59998', '32GB, Negro', 17000.000, 3, 3, 9),
 	(29, 'Motorola One', 'MOM598', '126GB, Macro', 30000.000, 3, 3, 9),
 	(30, 'Motorola razr', 'MORAZ598', '126GB, plegable', 130000.000, 3, 3, 9),
 	(31, 'Coca', 'cola', '3L', 200.000, 10, 3, 1),
-	(32, 'agua clara', '32', '3L', 43.000, 7, 3, 8);
+	(32, 'agua clara', '32', '3L', 43.000, 7, 3, 8),
+	(33, 'Monitor', '1439', '20", agregar y modificar', 4500.000, 24, 1, 5);
 /*!40000 ALTER TABLE `tbl_producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_usuarios
@@ -315,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   `password` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_usuarios: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
@@ -326,7 +334,8 @@ INSERT IGNORE INTO `tbl_usuarios` (`id_user`, `nombrecom`, `telefono`, `email`, 
 	(30, 'Anita', '12345123', 'aquica@gmail.com', 'MTIzNDU2\n'),
 	(31, 'asd2', '1234567', '1234@gmail.com', 'MTIzNDU2\n'),
 	(32, 'Pedrito ito tio', '11234132', 'pedrito@gmail.com', 'MTIzNDU2\n'),
-	(33, 'Pedro MAneiro en Alta', '1122334455', 'admin@admin.com', 'cGVkcm8xMjM=\n');
+	(33, 'Pedro MAneiro en Alta', '1122334455', 'admin@admin.com', 'cGVkcm8xMjM=\n'),
+	(34, 'Sofia Barbona', '112233112', 'sofi@sofi.com', 'MTIzNDU2\n');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -10,12 +10,11 @@ def producto():
     formpro['categoria']=input('Categoria: ')
     formpro['almacen']=input('Almacen: ')
     formpro['marca']=input('Marca: ')
-
-
+    formpro['edit']="0"
 
 
     if validator.validar_pro(formpro)=={}:
-        producto=Producto(formpro['nombrereal'],formpro['modelo'],formpro['descripcion'],formpro['precio'],formpro['categoria'],formpro['almacen'],formpro['marca'])
+        producto=Producto("",formpro['nombrereal'],formpro['modelo'],formpro['descripcion'],formpro['precio'],formpro['categoria'],formpro['almacen'],formpro['marca'])
         producto.save()
         print('Producto registrado exitosamente')
     else:

@@ -51,9 +51,10 @@ def Edit_Marcas():
     if validator.edit_Marca(formMarca)=={}:
         user=Marcas("",formMarca['nombre'])
         user.select()
-        print(user.select())
+        
         a=user.select()
-        # print(a[0])
+        
+        print("ID: "+str(a[0])+" - Marca: "+str(a[1]))
         print("\nMarca encontrada")
         
         

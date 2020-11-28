@@ -134,30 +134,8 @@ def opcion(opcion):
                 system("cls")
 
         except ValueError as identifier:
-            menu.ingresoError()
-                #from Validadores import newmarca
-            # elif opcion ==2.1:
-            #     import listarmarca
-            #     from Validadores import editmarca
-            # elif opcion==3:
-            #     from Validadores import newalmacen
-            # elif opcion==3.1:
-            #     import listaalma
-            # elif opcion==4:
-            #     from Validadores import newcategoria
-            # elif opcion==4.1:
-            #     import listacate
-            # elif opcion==5:
-            #     from Validadores import newciudad
-            # elif opcion==5.1:
-            #     import listaciu
-            # elif opcion==6:
-            #     print("para comprar")
-            #     break
-            # elif opcion==7:
-            #     from Validadores import newmtdpago
-            # elif opcion==8:
-            #     from Validadores import newproducto
+            ingresoError()
+        
             
             
         

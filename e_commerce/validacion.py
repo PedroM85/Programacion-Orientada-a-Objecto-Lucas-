@@ -36,12 +36,12 @@ class  validator():
             if datosFinales['edit']=="1":
                  print("\n")
             else:          
-                sql='select id_user from tbl_clientes where email=%s'
-                val=(datosFinales['email'],)
+                sql='select id_user from tbl_clientes where email=%s or dni=%s'
+                val=(datosFinales['email'],datosFinales['dni'])
                 dba.get_cursor().execute(sql,val)
                 result=dba.get_cursor().fetchone()
                 if result is not None:
-                    errores['mail']='el mail ya esta registrado en nuestra base'
+                    errores['mail']='El DNI o mail ya esta registrado en nuestra base'
                     return errores
 
         return errores
@@ -70,15 +70,31 @@ class  validator():
 #endregion
 
 #region login    
-    def validar_login(self, dic):        
-        sql='select * from tbl_usuarios where email=%s'
-        val=(dic['mail'],)
-        dba.get_cursor().execute(sql,val)
-        result=dba.get_cursor().fetchall()
-        if result == []:
-            return False
-        if base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8")== dic['password']: 
-            return result[0]
+    def validar_login(self, dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+        
+        if datosFinales['mail']=="":
+            errores['mail']='campo email vacio'
+        if datosFinales['password']=='':
+            errores['password']='campo password vacio'
+        
+        if errores=={}:
+
+            sql='select * from tbl_usuarios where email=%s'
+            val=(dic['mail'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchall()
+            if result == []:
+                return False
+            if base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8")== dic['password']: 
+                return result[0]
+            else:
+                return False
+        
+        return errores
 #endregion
     
 #region Marca
@@ -88,8 +104,8 @@ class  validator():
         for x,y in dic.items():
             datosFinales[x]=y.strip()
         
-        if datosFinales['id']=="":
-            errores['id']='campo id vacio'
+        # if datosFinales['id']=="":
+        #     errores['id']='campo id vacio'
         if datosFinales['nombremar']=='':
             errores['nombremar']='campo marca vacio'
 
@@ -139,8 +155,8 @@ class  validator():
         for x,y in dic.items():
             datosFinales[x]=y.strip()
 
-        if datosFinales['id']=="":
-            errores['id']='campo id vacio'
+        # if datosFinales['id']=="":
+        #     errores['id']='campo id vacio'
         if datosFinales['nombreal']=='':
             errores['nombreal']='campo marca vacio'
         
@@ -189,8 +205,8 @@ class  validator():
         for x,y in dic.items():
             datosFinales[x]=y.strip()
 
-        if datosFinales['id']=="":
-            errores['id']='campo id vacio'
+        # if datosFinales['id']=="":
+        #     errores['id']='campo id vacio'
         if datosFinales['nombrecate']=='':
             errores['nombrecate']='campo categoria vacio'
         
@@ -319,13 +335,16 @@ class  validator():
             errores['nombreal']='Metodo de pago vacio'
         
         if errores=={}:
-            sql='select id_methpago from tbl_methpago where tipo=%s'
-            val=(datosFinales['nombreal'],)
-            dba.get_cursor().execute(sql,val)
-            result=dba.get_cursor().fetchone()
-            if result is not None:
-                errores['nombreal']='El metodo de pago ya se encuentra registrada en nuestra base'
-                return errores
+            if datosFinales['edit']=="1":
+                print("\n")
+            else:    
+                sql='select id_methpago from tbl_methpago where tipo=%s'
+                val=(datosFinales['nombreal'],)
+                dba.get_cursor().execute(sql,val)
+                result=dba.get_cursor().fetchone()
+                if result is not None:
+                    errores['nombreal']='El metodo de pago ya se encuentra registrada en nuestra base'
+                    return errores
 
         return errores
 #endregion
@@ -456,7 +475,7 @@ class  validator():
             dba.get_cursor().execute(sql,val)
             result=dba.get_cursor().fetchone()
             if result is not None:
-                errores['mail']='el mail ya esta registrado en nuestra base'
+                errores['mail']='El mail ya esta registrado en nuestra base'
                 return errores
 
         return errores
@@ -466,13 +485,13 @@ class  validator():
 validator=validator()
 
 # sql='select * from tbl_usuarios where email=%s'
-# val=("pedrit1o@gmail.com",)
+# val=("pedritqo@gmail.com",)
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchall()
-# print(type(result))
+# #print(type(result))
 # print(result)
-# print(result[0][4].strip())
-# print(base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8"))
+#print(result[0][4].strip())
+#print(base64.decodebytes(bytes(result[0][4].strip(),'utf-8')).decode("UTF-8"))
 
 # dba.get_cursor().execute("select * from tbl_clientes")
 # result=dba.get_cursor().fetchall()
@@ -483,3 +502,10 @@ validator=validator()
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchone()
 # print(result)
+
+
+# sql="insert into tbl_clientes(dni,nombrecom,fechanac,sexo,telefono,email,ciudad) values(%s,%s,%s,%s,%s,%s,%s)"
+# val=(95896376,"asdasdsad","2020-11-23","F",11231212414,"adasdmasd@aad.com",2)
+# dba.get_cursor().execute(sql,val)        
+# dba.get_conexion().commit()
+# self.set_id_user(dba.get_cursor().lastrowid)
