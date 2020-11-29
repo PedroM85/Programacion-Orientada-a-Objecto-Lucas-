@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tbl_categoria` (
   `id_Categoria` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_Categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla e_commerce.tbl_categoria: ~24 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
@@ -72,7 +72,8 @@ INSERT IGNORE INTO `tbl_categoria` (`id_Categoria`, `tipo`) VALUES
 	(24, 'Televisores'),
 	(26, 'casa'),
 	(27, 'Alquiler'),
-	(28, 'Prueba agregar y editar');
+	(28, 'Prueba agregar y editar'),
+	(29, 'disco externo');
 /*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_ciudad
@@ -161,9 +162,8 @@ INSERT IGNORE INTO `tbl_clientes` (`id_user`, `dni`, `nombrecom`, `fechanac`, `s
 	(25, NULL, 'Debora Lima', '1980-03-19', 'F', '1245241698', 'compras19@gmail.com', 2),
 	(26, '95896376', 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromaneiro@gmail.com', 1),
 	(27, NULL, 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromaneirgo@gmail.com', 1),
-	(29, NULL, 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromane3irgo@gmail.com', 1),
-	(30, NULL, 'Anita', '2020-11-21', 'F', '12345123', 'aquica@gmail.com', 2),
-	(31, NULL, 'asd2', '2020-11-22', 'F', '1234567', '1234@gmail.com', 2),
+	(29, '12345', 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromane3irgo@gmail.com', 1),
+	(30, '123455', 'Anita', '2020-11-21', 'F', '12345123', 'aquica@gmail.com', 2),
 	(32, NULL, 'Pedrito ito tio', '2020-11-20', 'M', '11234132', 'pedrito@gmail.com', 2),
 	(33, NULL, 'Karina', '2020-11-17', 'F', '1122334411', 'karina@gmail.com', 1),
 	(34, '95896377', 'Prueba Menu', '2020-11-20', 'F', '1122334455', 'test@test.com', 2),
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tbl_compra` (
   CONSTRAINT `tbl_compra_ibfk_3` FOREIGN KEY (`id_methpago`) REFERENCES `tbl_methpago` (`id_methpago`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_compra: ~23 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_compra: ~22 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_compra` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_compra` (`id_compra`, `id_user`, `id_producto`, `id_methpago`, `cantidad`, `subtotal`) VALUES
 	(1, 2, 3, 3, 1.000, 55000.000),
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `tbl_methpago` (
   PRIMARY KEY (`id_methpago`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_methpago: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_methpago: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_methpago` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_methpago` (`id_methpago`, `tipo`) VALUES
 	(1, 'EFECTIVO'),
@@ -268,50 +268,51 @@ CREATE TABLE IF NOT EXISTS `tbl_producto` (
   `idCategoria` int(11) DEFAULT NULL,
   `idAlmacen` int(11) DEFAULT NULL,
   `idMarca` int(11) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_Producto`),
   UNIQUE KEY `modelo` (`modelo`),
   KEY `idCategoria` (`idCategoria`),
   KEY `idAlmacen` (`idAlmacen`),
   KEY `idMarca` (`idMarca`),
-  CONSTRAINT `tbl_producto_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `tbl_categoria` (`id_Categoria`),
-  CONSTRAINT `tbl_producto_ibfk_2` FOREIGN KEY (`idAlmacen`) REFERENCES `tbl_almacen` (`id_Almacen`),
-  CONSTRAINT `tbl_producto_ibfk_3` FOREIGN KEY (`idMarca`) REFERENCES `tbl_marca` (`id_Marca`)
+  CONSTRAINT `tbl_producto_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `tbl_categoria` (`id_Categoria`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_producto_ibfk_2` FOREIGN KEY (`idAlmacen`) REFERENCES `tbl_almacen` (`id_Almacen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tbl_producto_ibfk_3` FOREIGN KEY (`idMarca`) REFERENCES `tbl_marca` (`id_Marca`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_producto: ~29 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_producto: ~31 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_producto` DISABLE KEYS */;
-INSERT IGNORE INTO `tbl_producto` (`id_Producto`, `nombre`, `modelo`, `descripcion`, `precio`, `idCategoria`, `idAlmacen`, `idMarca`) VALUES
-	(1, 'Iphone 7', '128gb', 'negro', 60000.000, 3, 3, 8),
-	(2, 'Iphone 6s', '64 gb', 'Plateado', 35000.000, 3, 3, 8),
-	(3, 'Laptop', 'K03SD3', '14 Pulgadas, i3, 4gb ram, ssd', 55000.000, 21, 3, 1),
-	(4, 'Nintendo Swith', '3ADS323', 'Azul', 36000.000, 2, 3, 6),
-	(5, 'PlayStation 4', '500gb', 'Slim', 40000.000, 2, 3, 5),
-	(6, 'PlayStation 4', '1T', 'Negro', 42000.000, 2, 3, 5),
-	(7, 'Wii', '250gb', 'Blanca', 35000.000, 2, 3, 6),
-	(8, 'Tv Led 32', '41ASDF', '32 Pulgadas', 12000.000, 24, 3, 3),
-	(9, 'Tv Smart 32', '5ASDD-A', '32 Pulgadas', 15000.000, 24, 3, 2),
-	(11, 'Lavarropa', 'LG1698', 'Negro', 75000.000, 16, 2, 3),
-	(12, 'Impresora', 'HP6698', 'Multifuncion', 25000.000, 21, 2, 1),
-	(13, 'Aire Split', 'P45533', '33000 Frigorias', 26000.000, 4, 2, 10),
-	(15, 'Cocina', 'A455SSQ', 'A gas', 20000.000, 15, 1, 3),
-	(16, 'Anafe', '466ssA', 'Electrico', 35000.000, 15, 3, 10),
-	(17, 'Heladera No Frost', '41ASDFA', '260 Lt', 28000.000, 17, 1, 5),
-	(18, 'Heladera', 'HSAD99', '260 lt', 40000.000, 17, 1, 6),
-	(19, 'Samsung A10', 'SAS9987', '64gb Negro', 26000.000, 3, 3, 2),
-	(20, 'Samsung J7', 'J7SAAA', '32gb Blanco', 16000.000, 3, 3, 2),
-	(21, 'Cerveza', 'cerveza', 'rubia 1L', 180.000, 7, 3, 3),
-	(22, 'Cerveza', 'Rubia', 'Rubia 1l', 175.000, 7, 3, 9),
-	(23, 'Cerveza', 'pinta', 'rubia 1L', 180.000, 7, 3, 5),
-	(24, 'Cola', 'Coca-Cola', '1,25L', 70.000, 10, 3, 1),
-	(25, 'Cola', 'Coca-ColaA', '2,25L', 125.000, 10, 3, 2),
-	(26, 'Microondas', 'MS5556', 'Negro', 18000.000, 18, 1, 3),
-	(27, 'Samsung Galaxy', 'A10SA', '32GB, Negro', 21000.000, 3, 3, 2),
-	(28, 'Motorola E6', 'ES59998', '32GB, Negro', 17000.000, 3, 3, 9),
-	(29, 'Motorola One', 'MOM598', '126GB, Macro', 30000.000, 3, 3, 9),
-	(30, 'Motorola razr', 'MORAZ598', '126GB, plegable', 130000.000, 3, 3, 9),
-	(31, 'Coca', 'cola', '3L', 200.000, 10, 3, 1),
-	(32, 'agua clara', '32', '3L', 43.000, 7, 3, 8),
-	(33, 'Monitor', '1439', '20", agregar y modificar', 4500.000, 24, 1, 5);
+INSERT IGNORE INTO `tbl_producto` (`id_Producto`, `nombre`, `modelo`, `descripcion`, `precio`, `idCategoria`, `idAlmacen`, `idMarca`, `activo`) VALUES
+	(1, 'Iphone 7', '128gb', 'negro', 60000.000, 3, 3, 8, 0),
+	(2, 'Iphone 6s', '64 gb', 'Plateado', 35000.000, 3, 3, 8, 0),
+	(3, 'Laptop', 'K03SD3', '14 Pulgadas, i3, 4gb ram, ssd', 55000.000, 21, 3, 1, 0),
+	(4, 'Nintendo Swith', '3ADS323', 'Azul', 36000.000, 2, 3, 6, 0),
+	(5, 'PlayStation 4', '500gb', 'Slim', 40000.000, 2, 3, 5, 0),
+	(6, 'PlayStation 4', '1T', 'Negro', 42000.000, 2, 3, 5, 0),
+	(7, 'Wii', '250gb', 'Blanca', 35000.000, 2, 3, 6, 0),
+	(8, 'Tv Led 32', '41ASDF', '32 Pulgadas', 12000.000, 24, 3, 3, 0),
+	(9, 'Tv Smart 32', '5ASDD-A', '32 Pulgadas', 15000.000, 24, 3, 2, 0),
+	(11, 'Lavarropa', 'LG1698', 'Negro', 75000.000, 16, 2, 3, 0),
+	(12, 'Impresora', 'HP6698', 'Multifuncion', 25000.000, 21, 2, 1, 0),
+	(13, 'Aire Split', 'P45533', '33000 Frigorias', 26000.000, 4, 2, 10, 0),
+	(15, 'Cocina', 'A455SSQ', 'A gas', 20000.000, 15, 1, 3, 0),
+	(16, 'Anafe', '466ssA', 'Electrico', 35000.000, 15, 3, 10, 0),
+	(17, 'Heladera No Frost', '41ASDFA', '260 Lt', 28000.000, 17, 1, 5, 0),
+	(18, 'Heladera', 'HSAD99', '260 lt', 40000.000, 17, 1, 6, 0),
+	(19, 'Samsung A10', 'SAS9987', '64gb Negro', 26000.000, 3, 3, 2, 0),
+	(20, 'Samsung J7', 'J7SAAA', '32gb Blanco', 16000.000, 3, 3, 2, 0),
+	(21, 'Cerveza', 'cerveza', 'rubia 1L', 180.000, 7, 3, 3, 0),
+	(22, 'Cerveza', 'Rubia', 'Rubia 1l', 175.000, 7, 3, 9, 1),
+	(23, 'Cerveza', 'pinta', 'rubia 1L', 180.000, 7, 3, 5, 0),
+	(24, 'Cola', 'Coca-Cola', '1,25L', 70.000, 10, 3, 1, 0),
+	(25, 'Cola', 'Coca-ColaA', '2,25L', 125.000, 10, 3, 2, 0),
+	(26, 'Microondas', 'MS5556', 'Negro', 18000.000, 18, 1, 3, 0),
+	(27, 'Samsung Galaxy', 'A10SA', '32GB, Negro', 21000.000, 3, 3, 2, 0),
+	(28, 'Motorola E6', 'ES59998', '32GB, Negro', 17000.000, 3, 3, 9, 0),
+	(29, 'Motorola One', 'MOM598', '126GB, Macro', 30000.000, 3, 3, 9, 0),
+	(30, 'Motorola razr', 'MORAZ598', '126GB, plegable', 130000.000, 3, 3, 9, 0),
+	(31, 'Coca', 'cola', '3L', 200.000, 10, 3, 1, 0),
+	(32, 'agua clara', '32', '3L', 43.000, 7, 3, 8, 0),
+	(33, 'Monitor', '1439', '20", agregar y modificar', 4500.000, 24, 1, 5, 0);
 /*!40000 ALTER TABLE `tbl_producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_usuarios

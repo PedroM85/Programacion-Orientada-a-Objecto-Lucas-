@@ -47,7 +47,7 @@ class  validator():
         return errores
 #endregion
 
-#region ClienteBusqueda
+#region Edit Cliente
     def edit_cliente(self,dic):
         datosFinales={}
         errores={}
@@ -67,6 +67,29 @@ class  validator():
                 return errores
 
         return errores
+#endregion
+
+#region Eliminar Cliente
+    def eliminar_cliente(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['dni']=='':
+            errores['dni']='campo dni vacio'
+        
+        if errores=={}:
+            sql='delete from tbl_clientes where dni=%s'
+            val=(datosFinales['dni'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='el cliente no esta registrado en nuestra base'
+                return errores
+
+        return errores
+
 #endregion
 
 #region login    
@@ -420,16 +443,7 @@ class  validator():
             errores['nombrereal']='campo nombre vacio'
         if datosFinales['modelo']=='':
             errores['modelo']='campo modelo vacio'
-        # if datosFinales['descripcion']=='':
-        #     errores['descripcion']='campo descripcion vacio'
-        # if datosFinales['precio']=='':
-        #     errores['precio']='campo precio vacio'
-        # if datosFinales['categoria']=='':
-        #     errores['categoria']='campo categoria vacio'
-        # if datosFinales['almacen']=='':
-        #     errores['almace']='campo almacen vacio'
-        # if datosFinales['marca']=='':
-        #     errores['marca']='campo marca vacio'
+      
 
         if errores=={}:
             sql='select id_Producto from tbl_producto where nombre=%s and modelo=%s'
@@ -441,6 +455,31 @@ class  validator():
                 return errores
 
         return errores
+#endregion
+
+#region Eliminar Producto
+    def eliminar_Producto(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo nombre vacio'
+        # if datosFinales['modelo']=='':
+        #     errores['modelo']='campo modelo vacio'
+        
+        if errores=={}:
+            sql='UPDATE tbl_producto SET activo=%s WHERE id_Producto=%s '
+            val=("1",datosFinales['ID'])
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['nombrereal']='El producto no esta registrada en nuestra base'
+                return errores
+
+        return errores
+
 #endregion
 
 #region Usuario
@@ -497,8 +536,14 @@ validator=validator()
 # result=dba.get_cursor().fetchall()
 # print(result)
 
-# sql='SELECT * from tbl_producto WHERE nombre=%s and modelo=%s'
-# val=("Cerveza","rubia")
+# sql='delete from tbl_producto WHERE id_producto=%s'
+# val=("22",)
+# dba.get_cursor().execute(sql,val)
+# result=dba.get_cursor().fetchone()
+# print(result)
+
+# sql='update tbl_producto set id_producto=%s '
+# val=("22",)
 # dba.get_cursor().execute(sql,val)
 # result=dba.get_cursor().fetchone()
 # print(result)

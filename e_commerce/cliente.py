@@ -55,8 +55,8 @@ class Cliente():
         self.set_id_user(dba.get_cursor().lastrowid)
 
     def delete(self):
-        sql='delete from tbl_clientes where id=%s'
-        val=(self.id_user(),)
+        sql='delete from tbl_clientes where dni=%s'
+        val=(self.get_dni(),)
         dba.get_cursor().execute(sql,val)
         dba.get_conexion().commit()
 
@@ -71,7 +71,7 @@ class Cliente():
         val=(self.get_dni(),)
         dba.get_cursor().execute(sql,val)
         result=dba.get_cursor().fetchone()
-        print(result)
+        return result
 
 
 

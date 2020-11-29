@@ -66,3 +66,9 @@ class Producto():
         result=dba.get_cursor().fetchone()
         self.set_id(result[0])
         return result
+    
+    def delete(self):
+        sql='UPDATE tbl_producto SET activo=%s WHERE id_Producto=%s '
+        val=("1",self.get_id())
+        dba.get_cursor().execute(sql,val)
+        dba.get_conexion().commit()

@@ -1,4 +1,3 @@
-from Validadores.newcategoria import categorias
 from cliente import Cliente
 from marca import Marcas
 from almacen import Almacenes

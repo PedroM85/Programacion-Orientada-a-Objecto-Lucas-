@@ -8,6 +8,7 @@ from Validadores import newmtdpago
 from Validadores import newproducto
 from Validadores import newuser
 from Validadores import edit
+from Validadores import delete
 from colorama import Fore, init
 from os import system
 
@@ -118,14 +119,35 @@ def opcion(opcion):
                     ingreso()                
                     opcion=int(input())
 
-                # import listaciudad
-                # import listaruser
-                # from Validadores import edituser
+                
             elif opcion == 3:
                 menuEliminar()
                 ingreso()
                 opcion3=int(input())
-                break
+                                
+                if opcion3 ==1:
+                    delete.Del_Cliente()
+                if opcion3 == 2:
+                    break
+                if opcion3 == 3:
+                    break
+                if opcion3 == 4:
+                    break
+                if opcion3 == 5:
+                    break
+                if opcion3 == 6:
+                    break
+                if opcion3 == 7:
+                    delete.Del_Producto()
+                if opcion3 == 0:
+                    menuPrincipal()
+                    ingreso()                
+                    opcion=int(input())
+                else:
+                    menuPrincipal()
+                    ingreso()                
+                    opcion=int(input())
+
             elif opcion == 0:
                 salir = True
                 system("cls")
