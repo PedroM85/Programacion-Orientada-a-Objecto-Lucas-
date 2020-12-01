@@ -171,6 +171,29 @@ class  validator():
             return errores
 #endregion
 
+#region Eliminar Marca
+
+    def eliminar_Marca(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo vacio'
+        
+        if errores=={}:
+            sql='UPDATE tbl_marca SET activo=%s WHERE id_Marca=%s '
+            val=("1",datosFinales['ID'])
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='El producto no esta registrada en nuestra base'
+                return errores
+
+        return errores
+#endregion
+
 #region Almacen
     def validar_almace(self,dic):
         datosFinales={}
@@ -219,6 +242,29 @@ class  validator():
                     return errores
 
             return errores
+#endregion
+
+#region Eliminar Almacen
+    def eliminar_Almacen(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo nombre vacio'
+        
+        if errores=={}:
+            sql='delete from tbl_almacen where id_almacen=%s'
+            val=(datosFinales['ID'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='el almacen no esta registrado en nuestra base'
+                return errores
+
+        return errores
+
 #endregion
 
 #region Categoria
@@ -272,7 +318,30 @@ class  validator():
 
 #endregion
 
-#region Cuidad
+#region Eliminar Categoria
+    def eliminar_Categoria(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo vacio'
+        
+        if errores=={}:
+            sql='delete from tbl_categoria where id_categoria=%s'
+            val=(datosFinales['ID'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='la categoria no esta registrada en nuestra base'
+                return errores
+
+        return errores
+
+#endregion
+
+#region Ciudad
     def validar_ciu(self,dic):
         datosFinales={}
         errores={}
@@ -314,6 +383,29 @@ class  validator():
                     return errores
 
             return errores
+#endregion
+
+#region Eliminar Ciudad
+    def eliminar_ciudad(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo vacio'
+        
+        if errores=={}:
+            sql='delete from tbl_ciudad where id_ciudad=%s'
+            val=(datosFinales['ID'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='la ciudad no esta registrada en nuestra base'
+                return errores
+
+        return errores
+
 #endregion
 
 #region Compra
@@ -393,6 +485,30 @@ class  validator():
                     return errores
 
             return errores
+#endregion
+
+#region Eliminar methpago
+
+    def eliminar_MethPago(self,dic):
+        datosFinales={}
+        errores={}
+        for x,y in dic.items():
+            datosFinales[x]=y.strip()
+
+        if datosFinales['ID']=='':
+            errores['ID']='campo Metodo de pago vacio'
+        
+        if errores=={}:
+            sql='delete from tbl_methpago where id_methpago=%s '
+            val=(datosFinales['ID'],)
+            dba.get_cursor().execute(sql,val)
+            result=dba.get_cursor().fetchone()
+            if result is not None:
+                errores['ID']='El metodo no esta registrado en nuestra base'
+                return errores
+
+        return errores
+
 #endregion
 
 #region Producto    
