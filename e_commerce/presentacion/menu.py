@@ -128,15 +128,15 @@ def opcion(opcion):
                 if opcion3 ==1:
                     delete.Del_Cliente()
                 if opcion3 == 2:
-                    break
+                    delete.Del_Marcas()
                 if opcion3 == 3:
-                    break
+                    delete.Del_Almacen()
                 if opcion3 == 4:
-                    break
+                    delete.Del_Categoria()
                 if opcion3 == 5:
-                    break
+                    delete.Del_Ciudad()
                 if opcion3 == 6:
-                    break
+                    delete.Del_methpago()
                 if opcion3 == 7:
                     delete.Del_Producto()
                 if opcion3 == 0:
@@ -161,4 +161,6 @@ def opcion(opcion):
             
             
         
+        
+
         
