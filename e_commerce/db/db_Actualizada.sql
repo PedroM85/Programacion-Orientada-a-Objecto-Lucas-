@@ -220,6 +220,7 @@ INSERT IGNORE INTO `tbl_compra` (`id_compra`, `id_user`, `id_producto`, `id_meth
 CREATE TABLE IF NOT EXISTS `tbl_marca` (
   `id_Marca` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(80) DEFAULT NULL,
+  `activo` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_Marca`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
