@@ -24,14 +24,14 @@ CREATE TABLE IF NOT EXISTS `tbl_almacen` (
   PRIMARY KEY (`id_Almacen`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_almacen: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_almacen: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_almacen` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_almacen` (`id_Almacen`, `tipo`) VALUES
 	(1, 'Deposito1'),
 	(2, 'Deposito2'),
 	(3, 'Mostrador'),
 	(5, 'Exhibidor'),
-	(6, 'asd'),
+	(6, 'Deposito2'),
 	(7, 'sd2s'),
 	(8, 'Pruebadevenano');
 /*!40000 ALTER TABLE `tbl_almacen` ENABLE KEYS */;
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `tbl_categoria` (
   PRIMARY KEY (`id_Categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_categoria: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_categoria: ~27 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_categoria` (`id_Categoria`, `tipo`) VALUES
 	(1, 'Electrodomesticos'),
@@ -72,7 +72,6 @@ INSERT IGNORE INTO `tbl_categoria` (`id_Categoria`, `tipo`) VALUES
 	(24, 'Televisores'),
 	(26, 'casa'),
 	(27, 'Alquiler'),
-	(28, 'Prueba agregar y editar'),
 	(29, 'disco externo');
 /*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
 
@@ -83,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `tbl_ciudad` (
   PRIMARY KEY (`id_ciudad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_ciudad: ~25 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_ciudad: ~27 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_ciudad` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_ciudad` (`id_ciudad`, `nombre`) VALUES
 	(1, 'CABA'),
@@ -135,85 +134,148 @@ CREATE TABLE IF NOT EXISTS `tbl_clientes` (
 -- Volcando datos para la tabla e_commerce.tbl_clientes: ~33 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_clientes` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_clientes` (`id_user`, `dni`, `nombrecom`, `fechanac`, `sexo`, `telefono`, `email`, `ciudad`) VALUES
-	(1, NULL, 'Nacho Perez', '1985-03-08', 'M', '1232342312', 'telecompra@gmail.com', 1),
-	(2, NULL, 'Carmen Martinez', '1987-08-15', 'F', '1234123535', 'telecompra1@gmail.com', 2),
-	(3, NULL, 'Anibal Paniagua', '1946-04-14', 'M', '1234423535', 'telecompra2@gmail.com', 3),
-	(4, NULL, 'Carina Paez', '1975-09-25', 'F', '1235443535', 'telecompra3@gmail.com', 1),
-	(5, NULL, 'Andrea Casanay', '1999-06-01', 'F', '1245243535', 'telecompra4@gmail.com', 4),
-	(6, NULL, 'Romina Palermo', '1965-04-18', 'F', '1232342316', 'compras@gmail.com', 1),
-	(7, NULL, 'Lucas Mendoza', '1974-10-10', 'M', '1234123545', 'compras1@gmail.com', 2),
-	(8, NULL, 'Pablo Calvo', '1996-11-02', 'M', '1234423568', 'compras2@gmail.com', 3),
-	(9, NULL, 'Cristian Dominguez', '1985-09-15', 'M', '1235443599', 'compras3@gmail.com', 4),
-	(10, NULL, 'Anibal Diaz', '1982-01-02', 'M', '1245243598', 'compras4@gmail.com', 5),
-	(11, NULL, 'Ricardo Piedra', '1975-06-18', 'M', '1232342376', 'compras5@gmail.com', 1),
-	(12, NULL, 'Maria Ruiz', '1993-12-10', 'F', '1234123522', 'compras6@gmail.com', 10),
-	(13, NULL, 'Guillermo Pilo', '1986-06-24', 'M', '1234423558', 'compras7@gmail.com', 3),
-	(14, NULL, 'Cristina Peralta', '1975-09-25', 'F', '1235443519', 'compras8@gmail.com', 2),
-	(15, NULL, 'Anabel Carra', '1980-10-04', 'F', '1245241198', 'compras9@gmail.com', 6),
-	(16, NULL, 'Raul Todetti', '1955-03-17', 'M', '1231142316', 'compras10@gmail.com', 1),
-	(17, NULL, 'Rebecca Tarrima', '1992-11-02', 'F', '1234123506', 'compras11@gmail.com', 10),
-	(18, NULL, 'Paulina Cocina', '1967-12-13', 'F', '1234421168', 'compras12@gmail.com', 4),
-	(19, NULL, 'Dwight Schrute', '1969-06-10', 'M', '1235111599', 'compras13@gmail.com', 5),
-	(20, NULL, 'Angela Martin', '1972-03-12', 'F', '1245241198', 'compras14@gmail.com', 6),
-	(21, NULL, 'Oscar Martinez', '1971-08-18', 'M', '1232342303', 'compras15@gmail.com', 7),
-	(22, NULL, 'Ciro Persa', '1990-02-26', 'M', '1234161422', 'compras16@gmail.com', 8),
-	(23, NULL, 'Romina Gorritti', '1980-07-22', 'F', '1232523558', 'compras17@gmail.com', 9),
-	(24, NULL, 'Sabrina Lee', '1969-03-13', 'F', '1235136519', 'compras18@gmail.com', 6),
-	(25, NULL, 'Debora Lima', '1980-03-19', 'F', '1245241698', 'compras19@gmail.com', 2),
+	(1, '95784324', 'Nacho Perez', '1985-03-08', 'M', '1232342312', 'telecompra@gmail.com', 1),
+	(2, '95784325', 'Carmen Martinez', '1987-08-15', 'F', '1234123535', 'telecompra1@gmail.com', 2),
+	(3, '95784326', 'Anibal Paniagua', '1946-04-14', 'M', '1234423535', 'telecompra2@gmail.com', 3),
+	(4, '95784327', 'Carina Paez', '1975-09-25', 'F', '1235443535', 'telecompra3@gmail.com', 1),
+	(5, '95784328', 'Andrea Casanay', '1999-06-01', 'F', '1245243535', 'telecompra4@gmail.com', 4),
+	(6, '95784329', 'Romina Palermo', '1965-04-18', 'F', '1232342316', 'compras@gmail.com', 1),
+	(7, '95784321', 'Lucas Mendoza', '1974-10-10', 'M', '1234123545', 'compras1@gmail.com', 2),
+	(8, '95784322', 'Pablo Calvo', '1996-11-02', 'M', '1234423568', 'compras2@gmail.com', 3),
+	(9, '95784323', 'Cristian Dominguez', '1985-09-15', 'M', '1235443599', 'compras3@gmail.com', 4),
+	(10, '95784450', 'Anibal Diaz', '1982-01-02', 'M', '1245243598', 'compras4@gmail.com', 5),
+	(11, '95784451', 'Ricardo Piedra', '1975-06-18', 'M', '1232342376', 'compras5@gmail.com', 1),
+	(12, '95784452', 'Maria Ruiz', '1993-12-10', 'F', '1234123522', 'compras6@gmail.com', 10),
+	(13, '95784453', 'Guillermo Pilo', '1986-06-24', 'M', '1234423558', 'compras7@gmail.com', 3),
+	(14, '95784454', 'Cristina Peralta', '1975-09-25', 'F', '1235443519', 'compras8@gmail.com', 2),
+	(15, '95784455', 'Anabel Carra', '1980-10-04', 'F', '1245241198', 'compras9@gmail.com', 6),
+	(16, '95784456', 'Raul Todetti', '1955-03-17', 'M', '1231142316', 'compras10@gmail.com', 1),
+	(17, '95784457', 'Rebecca Tarrima', '1992-11-02', 'F', '1234123506', 'compras11@gmail.com', 10),
+	(18, '95784458', 'Paulina Cocina', '1967-12-13', 'F', '1234421168', 'compras12@gmail.com', 4),
+	(19, '95784459', 'Dwight Schrute', '1969-06-10', 'M', '1235111599', 'compras13@gmail.com', 5),
+	(20, '95784460', 'Angela Martin', '1972-03-12', 'F', '1245241198', 'compras14@gmail.com', 6),
+	(21, '95784461', 'Oscar Martinez', '1971-08-18', 'M', '1232342303', 'compras15@gmail.com', 7),
+	(22, '95784462', 'Ciro Persa', '1990-02-26', 'M', '1234161422', 'compras16@gmail.com', 8),
+	(23, '95784463', 'Romina Gorritti', '1980-07-22', 'F', '1232523558', 'compras17@gmail.com', 9),
+	(24, '95784464', 'Sabrina Lee', '1969-03-13', 'F', '1235136519', 'compras18@gmail.com', 6),
+	(25, '95784465', 'Debora Lima', '1980-03-19', 'F', '1245241698', 'compras19@gmail.com', 2),
 	(26, '95896376', 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromaneiro@gmail.com', 1),
-	(27, NULL, 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromaneirgo@gmail.com', 1),
+	(27, '95784466', 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromaneirgo@gmail.com', 1),
 	(29, '12345', 'Pedro Maneiro', '1985-09-10', 'M', '1121651051', 'pedromane3irgo@gmail.com', 1),
 	(30, '123455', 'Anita', '2020-11-21', 'F', '12345123', 'aquica@gmail.com', 2),
-	(32, NULL, 'Pedrito ito tio', '2020-11-20', 'M', '11234132', 'pedrito@gmail.com', 2),
-	(33, NULL, 'Karina', '2020-11-17', 'F', '1122334411', 'karina@gmail.com', 1),
-	(34, '95896377', 'Prueba Menu', '2020-11-20', 'F', '1122334455', 'test@test.com', 2),
+	(32, '95784467', 'Pedrito ito tio', '2020-11-20', 'M', '11234132', 'pedrito@gmail.com', 2),
+	(33, '95784468', 'Karina', '2020-11-17', 'F', '1122334411', 'karina@gmail.com', 1),
+	(34, '95896377', 'Prueba1204', '2020-12-04', 'F', '1122334455', 'test@test.com', 14),
 	(40, '95896375', 'Vanessa', '2020-11-23', 'F', '112233112', 'vane@vane.com', 1);
 /*!40000 ALTER TABLE `tbl_clientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_compra
 CREATE TABLE IF NOT EXISTS `tbl_compra` (
-  `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+  `id_compra` int(3) DEFAULT NULL,
+  `id_compra_cant` int(5) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
   `id_methpago` int(11) DEFAULT NULL,
   `cantidad` decimal(10,3) DEFAULT NULL,
   `subtotal` decimal(10,3) DEFAULT NULL,
-  PRIMARY KEY (`id_compra`),
+  PRIMARY KEY (`id_compra_cant`) USING BTREE,
   KEY `id_user` (`id_user`),
   KEY `id_producto` (`id_producto`),
   KEY `id_methpago` (`id_methpago`),
   CONSTRAINT `FK_tbl_compra_tbl_clientes` FOREIGN KEY (`id_user`) REFERENCES `tbl_clientes` (`id_user`) ON UPDATE NO ACTION,
   CONSTRAINT `tbl_compra_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `tbl_producto` (`id_Producto`),
   CONSTRAINT `tbl_compra_ibfk_3` FOREIGN KEY (`id_methpago`) REFERENCES `tbl_methpago` (`id_methpago`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_compra: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_compra: ~86 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_compra` DISABLE KEYS */;
-INSERT IGNORE INTO `tbl_compra` (`id_compra`, `id_user`, `id_producto`, `id_methpago`, `cantidad`, `subtotal`) VALUES
-	(1, 2, 3, 3, 1.000, 55000.000),
-	(2, 5, 2, 2, 1.000, 35000.000),
-	(3, 4, 17, 1, 1.000, 28000.000),
-	(4, 9, 26, 2, 1.000, 18000.000),
-	(5, 18, 27, 3, 1.000, 21000.000),
-	(6, 12, 16, 2, 1.000, 35000.000),
-	(7, 25, 11, 3, 1.000, 75000.000),
-	(8, 13, 15, 3, 1.000, 20000.000),
-	(9, 16, 21, 1, 1.000, 180.000),
-	(10, 23, 18, 4, 1.000, 40000.000),
-	(11, 15, 19, 2, 1.000, 26000.000),
-	(12, 7, 30, 3, 1.000, 130000.000),
-	(13, 10, 13, 4, 1.000, 26000.000),
-	(14, 22, 25, 1, 1.000, 125.000),
-	(15, 6, 29, 2, 1.000, 30000.000),
-	(16, 14, 23, 1, 3.000, 540.000),
-	(17, 8, 27, 2, 1.000, 21000.000),
-	(18, 13, 24, 1, 4.000, 280.000),
-	(19, 19, 22, 1, 1.000, 170.000),
-	(20, 21, 20, 5, 0.000, 16000.000),
-	(22, 3, 3, 3, 1.000, 44000.000),
-	(23, 32, 2, 4, 2.000, 3.000),
-	(29, 3, 2, 4, 1.000, 2.000),
-	(30, 32, 2, 2, 145.000, 23.000);
+INSERT IGNORE INTO `tbl_compra` (`id_compra`, `id_compra_cant`, `id_user`, `id_producto`, `id_methpago`, `cantidad`, `subtotal`) VALUES
+	(1, 1, 2, 3, 3, 1.000, 55000.000),
+	(2, 2, 5, 2, 2, 1.000, 35000.000),
+	(3, 3, 4, 17, 1, 1.000, 28000.000),
+	(4, 4, 9, 26, 2, 1.000, 18000.000),
+	(5, 5, 18, 27, 3, 1.000, 21000.000),
+	(6, 6, 12, 16, 2, 1.000, 35000.000),
+	(7, 7, 25, 11, 3, 1.000, 75000.000),
+	(8, 8, 13, 15, 3, 1.000, 20000.000),
+	(9, 9, 16, 21, 1, 1.000, 180.000),
+	(10, 10, 23, 18, 4, 1.000, 40000.000),
+	(11, 11, 15, 19, 2, 1.000, 26000.000),
+	(12, 12, 7, 30, 3, 1.000, 130000.000),
+	(13, 13, 10, 13, 4, 1.000, 26000.000),
+	(14, 14, 22, 25, 1, 1.000, 125.000),
+	(15, 15, 6, 29, 2, 1.000, 30000.000),
+	(16, 16, 14, 23, 1, 3.000, 540.000),
+	(17, 17, 8, 27, 2, 1.000, 21000.000),
+	(18, 18, 13, 24, 1, 4.000, 280.000),
+	(19, 19, 19, 22, 1, 1.000, 170.000),
+	(20, 20, 21, 20, 5, 0.000, 16000.000),
+	(21, 22, 3, 3, 3, 1.000, 44000.000),
+	(22, 23, 32, 2, 4, 2.000, 3.000),
+	(23, 29, 3, 2, 4, 1.000, 2.000),
+	(24, 30, 32, 2, 2, 145.000, 23.000),
+	(25, 31, 23, 1, 2, 1.000, 180000.000),
+	(26, 32, 40, 25, 1, 1.000, 120.000),
+	(27, 41, 1, 1, 1, 1.000, 90.000),
+	(27, 42, 1, 2, 1, 1.000, 91.000),
+	(28, 43, 2, 3, 1, 1.000, 98.000),
+	(28, 44, 2, 5, 2, 1.000, 234.000),
+	(29, 45, 12, 25, 1, 1.000, 234.000),
+	(30, 46, 11, 23, 1, 2.000, 123.000),
+	(31, 47, 9, 8, 1, 1.000, 2300.000),
+	(31, 48, 9, 17, 1, 1.000, 2342.000),
+	(32, 49, 33, 30, 1, 1.000, 123.000),
+	(32, 50, 33, 33, 3, 1.000, 32.000),
+	(33, 51, 24, 15, 1, 1.000, 234.000),
+	(33, 52, 24, 20, 1, 1.000, 300.000),
+	(33, 53, 24, 7, 1, 1.000, 18.000),
+	(33, 54, 24, 23, 1, 1.000, 23.000),
+	(34, 55, 1, 4, 1, 1.000, 900.000),
+	(34, 56, 1, 8, 1, 1.000, 759.000),
+	(34, 57, 1, 23, 1, 1.000, 234.000),
+	(34, 58, 1, 29, 1, 1.000, 1750.000),
+	(35, 59, 1, 2, 1, 1.000, 23.000),
+	(36, 60, 1, 2, 1, 1.000, 1.000),
+	(37, 61, 1, 1, 1, 1.000, 1.000),
+	(38, 62, 1, 1, 1, 1.000, 1.000),
+	(39, 63, 1, 1, 1, 1.000, 1.000),
+	(40, 64, 1, 1, 1, 1.000, 1.000),
+	(41, 65, 11, 1, 1, 1.000, 1.000),
+	(42, 66, 1, 1, 1, 1.000, 1.000),
+	(43, 67, 1, 1, 1, 1.000, 1.000),
+	(44, 68, 1, 2, 1, 1.000, 1.000),
+	(45, 69, 1, 1, 1, 1.000, 1.000),
+	(46, 70, 1, 2, 1, 1.000, 1.000),
+	(46, 71, 1, 1, 2, 3.000, 1.000),
+	(47, 72, 1, 1, 1, 1.000, 1.000),
+	(48, 73, 1, 1, 1, 1.000, 1.000),
+	(49, 74, 1, 1, 1, 1.000, 1.000),
+	(50, 75, 1, 1, 1, 1.000, 1.000),
+	(51, 76, 1, 1, 1, 1.000, 1.000),
+	(52, 77, 1, 1, 1, 1.000, 1.000),
+	(53, 78, 1, 1, 1, 1.000, 1.000),
+	(54, 79, 1, 1, 1, 1.000, 1.000),
+	(55, 80, 1, 1, 1, 1.000, 1.000),
+	(56, 81, 1, 1, 1, 1.000, 1.000),
+	(57, 82, 1, 2, 2, 2.000, 2.000),
+	(57, 83, 3, 3, 1, 3.000, 3.000),
+	(58, 84, 1, 2, 3, 4.000, 5.000),
+	(59, 85, 1, 2, 3, 4.000, 5.000),
+	(60, 86, 4, 4, 4, 4.000, 4.000),
+	(61, 87, 1, 2, 3, 4.000, 1.000),
+	(62, 88, 1, 1, 1, 1.000, 1.000),
+	(63, 89, 2, 3, 1, 2.000, 3.000),
+	(64, 90, 1, 2, 3, 4.000, 1.000),
+	(65, 91, 1, 2, 3, 1.000, 2.000),
+	(66, 92, 1, 2, 3, 4.000, 5.000),
+	(66, 93, 1, 2, 3, 4.000, 5.000),
+	(67, 94, 1, 2, 2, 1.000, 1.000),
+	(67, 95, 1, 4, 3, 3.000, 2.000),
+	(68, 96, 1, 2, 3, 4.000, 99.000),
+	(68, 97, 1, 2, 3, 4.000, 5.000),
+	(69, 98, 1, 2, 3, 4.000, 5.000),
+	(69, 99, 1, 2, 3, 4.000, 234.000),
+	(69, 100, 5, 4, 3, 2.000, 233.000);
 /*!40000 ALTER TABLE `tbl_compra` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_marca
@@ -222,21 +284,22 @@ CREATE TABLE IF NOT EXISTS `tbl_marca` (
   `nombre` varchar(80) DEFAULT NULL,
   `activo` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_Marca`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_marca: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_marca: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_marca` DISABLE KEYS */;
-INSERT IGNORE INTO `tbl_marca` (`id_Marca`, `nombre`) VALUES
-	(1, 'CANON'),
-	(2, 'Samsung'),
-	(3, 'Toshiba'),
-	(4, 'TP Link'),
-	(5, 'Sony'),
-	(6, 'Nintendo'),
-	(7, 'Microsoft'),
-	(8, 'Apple'),
-	(9, 'Motorola'),
-	(10, 'Sanyo');
+INSERT IGNORE INTO `tbl_marca` (`id_Marca`, `nombre`, `activo`) VALUES
+	(1, 'CANON', 0),
+	(2, 'Samsung', 0),
+	(3, 'Toshiba', 0),
+	(4, 'TP Link', 0),
+	(5, 'Sony', 0),
+	(6, 'Nintendo', 0),
+	(7, 'Microsoft', 0),
+	(8, 'Apple', 0),
+	(9, 'Motorola', 0),
+	(10, 'Sanyo', 0),
+	(12, 'd', 0);
 /*!40000 ALTER TABLE `tbl_marca` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_methpago
@@ -246,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `tbl_methpago` (
   PRIMARY KEY (`id_methpago`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_methpago: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_methpago: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_methpago` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_methpago` (`id_methpago`, `tipo`) VALUES
 	(1, 'EFECTIVO'),
@@ -255,8 +318,7 @@ INSERT IGNORE INTO `tbl_methpago` (`id_methpago`, `tipo`) VALUES
 	(4, 'GIFT CARD'),
 	(5, 'MERCADOPAGO'),
 	(7, 'pagofacil'),
-	(8, 'Rapipago'),
-	(9, 'Especio once');
+	(8, 'Rapipago');
 /*!40000 ALTER TABLE `tbl_methpago` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_producto
@@ -313,7 +375,7 @@ INSERT IGNORE INTO `tbl_producto` (`id_Producto`, `nombre`, `modelo`, `descripci
 	(30, 'Motorola razr', 'MORAZ598', '126GB, plegable', 130000.000, 3, 3, 9, 0),
 	(31, 'Coca', 'cola', '3L', 200.000, 10, 3, 1, 0),
 	(32, 'agua clara', '32', '3L', 43.000, 7, 3, 8, 0),
-	(33, 'Monitor', '1439', '20", agregar y modificar', 4500.000, 24, 1, 5, 0);
+	(33, 'Monitor', '1439', '20", agregar y modificar', 4500.000, 24, 1, 5, 1);
 /*!40000 ALTER TABLE `tbl_producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla e_commerce.tbl_usuarios
@@ -327,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla e_commerce.tbl_usuarios: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla e_commerce.tbl_usuarios: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
 INSERT IGNORE INTO `tbl_usuarios` (`id_user`, `nombrecom`, `telefono`, `email`, `password`) VALUES
 	(26, 'Pedro Maneiro', '1121651051', 'pedromaneiro@gmail.com', 'pedro1985'),
