@@ -1,3 +1,2 @@
-from fibo import fib, fib2
-
-fib(10)
+for i in range(13):
+    print(i, end="\t\t")

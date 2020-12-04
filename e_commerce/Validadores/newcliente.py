@@ -4,13 +4,16 @@ from validacion import validator
 
 def cliente():
     formcliente={}
-    formcliente['dni']=input('Ingrese DNI: ')
-    formcliente['nombrecom']=input('Nombre completo: ')
-    formcliente['fechanac']=input('Fecha de Nacimiento AAAA-MM-DD: ')
-    formcliente['sexo']=input('Sexo F o M: ')
-    formcliente['telefono']=input('Telefono: ')
-    formcliente['email']=input('Email: ')
-    formcliente['ciudad']=input('Ciudad: ')
+    formcliente['dni']=input('Ingrese su DNI: ')
+    formcliente['nombrecom']=input('Ingrese su nombre completo: ')
+    formcliente['fechanac']=input('Ingrese su fecha de Nacimiento AAAA-MM-DD: ')
+    formcliente['sexo']=input('Ingrese su sexo F o M: ')
+    formcliente['telefono']=input('Ingrese su telefono: ')
+    formcliente['email']=input('Ingrese su email: ')
+    print("-"*35)
+    validator.listar_ciudad()
+    print("-"*35)
+    formcliente['ciudad']=input('Ingrese el numero de la ciudad: ')
     formcliente['edit']="0"
     
 

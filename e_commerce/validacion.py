@@ -92,6 +92,17 @@ class  validator():
 
 #endregion
 
+#region Lista_cliente
+    def listar_cliente(self):
+        sql='select * from tbl_clientes '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(l[0], l[2], end="\t")
+        print("\n")
+
+#endregion
+
 #region login    
     def validar_login(self, dic):
         datosFinales={}
@@ -116,6 +127,8 @@ class  validator():
                 return result[0]
             else:
                 return False
+        else:
+            return False
         
         return errores
 #endregion
@@ -194,6 +207,17 @@ class  validator():
         return errores
 #endregion
 
+#region Lista_Marca
+    def listar_marca(self):
+        sql='select * from tbl_marca '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(l[0], l[1], end="\t ")
+        print("\n")
+
+#endregion
+
 #region Almacen
     def validar_almace(self,dic):
         datosFinales={}
@@ -264,6 +288,17 @@ class  validator():
                 return errores
 
         return errores
+
+#endregion
+
+#regin Lista_almacen
+    def listar_almacen(self):
+        sql='select * from tbl_almacen '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(*l, end="\t ")
+        print("\n")
 
 #endregion
 
@@ -341,6 +376,17 @@ class  validator():
 
 #endregion
 
+#region Lista_categoria
+    def listar_categoria(self):
+        sql='select * from tbl_categoria'
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+             print(*l, end="\t ")
+        print("\n")
+
+#endregion
+
 #region Ciudad
     def validar_ciu(self,dic):
         datosFinales={}
@@ -405,6 +451,17 @@ class  validator():
                 return errores
 
         return errores
+
+#endregion
+
+#regin Lista_Ciudad
+    def listar_ciudad(self):
+        sql='select * from tbl_ciudad '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(*l, end="\t ")
+        print("\n")
 
 #endregion
 
@@ -511,6 +568,26 @@ class  validator():
 
 #endregion
 
+#region ID_Ultimo_Producto
+    def ID_Ultimo_Producto(self):
+        sql='SELECT max(id_compra) FROM tbl_compra '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchone()
+        a=int(*result)
+        return int(a+1)
+#endregion
+
+#region Lista_methpago
+    def listar_methpago(self):
+        sql='select * from tbl_methpago '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(l[0], l[1], end="\t")
+        print("\n")
+
+#endregion
+
 #region Producto    
     def validar_pro(self,dic):
         datosFinales={}
@@ -598,6 +675,17 @@ class  validator():
 
 #endregion
 
+#region Lista_producto
+    def listar_producto(self):
+        sql='select * from tbl_producto '
+        dba.get_cursor().execute(sql)
+        result=dba.get_cursor().fetchall()
+        for l in result:
+            print(l[0],"Nombre: "+l[1]," Modelo: "+ l[2], end="\t")
+        print("\n")
+
+#endregion
+
 #region Usuario
     def validar_usuario(self,dic):
         datosFinales={}
@@ -658,11 +746,27 @@ validator=validator()
 # result=dba.get_cursor().fetchone()
 # print(result)
 
-# sql='update tbl_producto set id_producto=%s '
-# val=("22",)
-# dba.get_cursor().execute(sql,val)
-# result=dba.get_cursor().fetchone()
-# print(result)
+# sql='select * from tbl_producto '
+# dba.get_cursor().execute(sql)
+# result=dba.get_cursor().fetchall()
+# # sep = "|{}|{}|".format("-"*7, "-"*23)
+# # print("{0}\n|   ID  |      Ciudad           |\n{0}".format(sep))
+# for l in result:
+#     # print("|{}\t|   {}\t\t|\n{}".format(i[1],i[2], sep))
+#     print(l[0],l[1], l[2], end="\t\t")
+# # print(type(result))
+# for x in range(len(result)):
+#     for i in range(x):
+#         print(result[i])
+# for x in range(len(result)):
+#     for i in range(x):
+#         print(i)
+
+# sep = "|{}|{}|".format("-"*7, "-"*23)
+# print("{0}\n|   ID  |      Ciudad           |\n{0}".format(sep))
+# for i in result:
+#     print("|{}\t|   {}\t\t|\n{}".format(i[0],i[1], sep))
+
 
 
 # sql="insert into tbl_clientes(dni,nombrecom,fechanac,sexo,telefono,email,ciudad) values(%s,%s,%s,%s,%s,%s,%s)"
@@ -670,3 +774,10 @@ validator=validator()
 # dba.get_cursor().execute(sql,val)        
 # dba.get_conexion().commit()
 # self.set_id_user(dba.get_cursor().lastrowid)
+
+
+# sql='SELECT max(id_compra) FROM tbl_compra '
+# dba.get_cursor().execute(sql)
+# result=dba.get_cursor().fetchone()
+# a=int(*result)
+# print(a)

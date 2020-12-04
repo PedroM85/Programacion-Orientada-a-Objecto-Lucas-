@@ -15,8 +15,12 @@ def Edit_Cliente():
  
     if validator.edit_cliente(formcliente)=={}:
         user=Cliente(formcliente['dni'],"","","","","","")
-        user.select()
-        print("\nUsuario encontrado")
+        # user.select()
+        a= user.select()
+
+        print("Usuario encontrado \n")
+        print("DNI: "+str(a[1])+" - Nombre Completo: "+str(a[2])+" - Fecha de Nacimiento: "+str(a[3]))
+        print("Sexo: "+str(a[4])+" - Telefono: "+str(a[5])+ " - email: "+str(a[6])+" - Ciudad: "+str(a[7])+"\n")
         formeditcliente={}
         formeditcliente['dni']=formcliente['dni']
         formeditcliente['nombrecom']=input('Nombre completo: ')
@@ -24,6 +28,9 @@ def Edit_Cliente():
         formeditcliente['sexo']=(input('Sexo F o M: ').capitalize())
         formeditcliente['telefono']=input('Telefono: ')
         formeditcliente['email']=input('Email: ')
+        print("-"*35)
+        validator.listar_ciudad()
+        print("-"*35)
         formeditcliente['ciudad']=input('Ciudad: ')
         formeditcliente['edit']="1"
         
@@ -59,6 +66,9 @@ def Edit_Marcas():
         
         formeditmarca={}
         formeditmarca['id']=str(a[0])
+        print("-"*35)
+        validator.listar_marca()
+        print("-"*35)
         formeditmarca['nombremar']=(input("Ingrese nueva Marca: ").capitalize())
         formeditmarca['edit']="1"
 
@@ -90,6 +100,9 @@ def Edit_Almacen():
         
         formeditAlmacen={}
         formeditAlmacen['id']=str(a[0])
+        print("-"*35)
+        validator.listar_almacen()
+        print("-"*35)
         formeditAlmacen['nombreal']=(input("Ingrese nuevo Almacen: ").capitalize())
         formeditAlmacen['edit']="1"
 
@@ -121,6 +134,9 @@ def Edit_Categoria():
         
         formeditCategoria={}
         formeditCategoria['id']=str(a[0])
+        print("-"*35)
+        validator.listar_categoria()
+        print("-"*35)
         formeditCategoria['nombrecate']=(input("Ingrese nueva Categoria: ").capitalize())
         formeditCategoria['edit']="1"
 
@@ -183,6 +199,9 @@ def Edit_methpago():
         
         formeditmethpago={}
         formeditmethpago['id']=str(a[0])
+        print("-"*35)
+        validator.listar_methpago()
+        print("-"*35)
         formeditmethpago['nombreal']=(input("Ingrese nueva Metodo de pago: ").capitalize())
         formeditmethpago['edit']="1"
 
@@ -196,6 +215,8 @@ def Edit_methpago():
         print(validator.edit_Methpago(formmethpago))
 
 #endregion
+
+
 
 #region Producto
 def Edit_Producto():
@@ -218,8 +239,17 @@ def Edit_Producto():
         formeditProducto['modelo']=input('Modelo del Producto: ')
         formeditProducto['descripcion']=(input('Descripcion del Producto: ').capitalize())
         formeditProducto['precio']=input('Precio del Producto: ')
+        print("-"*35)
+        validator.listar_categoria()
+        print("-"*35)
         formeditProducto['categoria']=input('Categoria del Producto: ')
+        print("-"*35)
+        validator.listar_almacen()
+        print("-"*35)
         formeditProducto['almacen']=input('Almacen del Producto: ')
+        print("-"*35)
+        validator.listar_marca()
+        print("-"*35)
         formeditProducto['marca']=input('Marca del Producto: ')
         formeditProducto['edit']="1"
         

@@ -1,8 +1,9 @@
 from dba import dba
 
 class Compra():
-    def __init__(self, usuario,producto,methpago,cantidad,subtotal):
+    def __init__(self,idcant,usuario,producto,methpago,cantidad,subtotal):
         self.__id = id
+        self.idcant=idcant
         self.usuario=usuario
         self.producto=producto
         self.methpago=methpago
@@ -13,6 +14,10 @@ class Compra():
         return self.usuario
     def set_usuario(self,usuario):
         self.usuario=usuario
+    def get_idcant(self):
+        return self.idcant
+    def set_idcant(self,idcant):
+        self.idcant=idcant
     def get_producto(self):
         return self.producto
     def set_producto(self,producto):
@@ -35,8 +40,8 @@ class Compra():
         return id
     
     def save(self):
-        sql="insert into tbl_compra(id_user,id_producto,id_methpago,cantidad,subtotal) values(%s,%s,%s,%s,%s)"
-        val=(self.get_usuario(),self.get_producto(),self.get_methpago(),self.get_cantidad(),self.get_subtotal())
+        sql="insert into tbl_compra(id_compra,id_user,id_producto,id_methpago,cantidad,subtotal) values(%s,%s,%s,%s,%s,%s)"
+        val=(self.get_idcant(),self.get_usuario(),self.get_producto(),self.get_methpago(),self.get_cantidad(),self.get_subtotal())
         dba.get_cursor().execute(sql,val)        
         dba.get_conexion().commit()
         self.set_id(dba.get_cursor().lastrowid)

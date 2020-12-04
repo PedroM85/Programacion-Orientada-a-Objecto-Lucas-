@@ -14,6 +14,9 @@ def eliminar():
 def Del_Cliente():
 
     formcliente={}
+    print("-"*35)
+    validator.listar_cliente()
+    print("-"*35)
     formcliente['dni']=input("Ingrese DNI de cliente a eliminar: ")
  
     if validator.edit_cliente(formcliente)=={}:
@@ -56,8 +59,11 @@ def Del_Cliente():
 def Del_Producto():
 
     formProducto={}
-    formProducto['nombrereal']=input("Ingrese Nombre del producto: ")
-    formProducto['modelo']=input("Ingrese Modelo: ")
+    print("-"*35)
+    validator.listar_producto()
+    print("-"*35)
+    formProducto['nombrereal']=input("Ingrese Nombre del producto a eliminar: ")
+    formProducto['modelo']=input("Ingrese Modelo a eliminar: ")
  
     if validator.edit_pro(formProducto)=={}:
         user=Producto("",formProducto['nombrereal'],formProducto['modelo'],"","","","","",)
@@ -103,7 +109,10 @@ def Del_Producto():
 def Del_Marcas():
 
     formMarca={}
-    formMarca['nombre']=(input("Ingrese Marca: ").capitalize())
+    print("-"*35)
+    validator.listar_marca()
+    print("-"*35)
+    formMarca['nombre']=(input("Ingrese Marca a eliminar: ").capitalize())
  
     if validator.edit_Marca(formMarca)=={}:
         user=Marcas("",formMarca['nombre'])
@@ -143,7 +152,10 @@ def Del_Marcas():
 def Del_methpago():
 
     formmethpago={}
-    formmethpago['nombre']=(input("Ingrese Metodo de pago: ").capitalize())
+    print("-"*35)
+    validator.listar_methpago()
+    print("-"*35)
+    formmethpago['nombre']=(input("Ingrese Metodo de pago a eliminar: ").capitalize())
     
     if validator.edit_Methpago(formmethpago)=={}:
         user=MethPago("",formmethpago['nombre'])
@@ -181,7 +193,10 @@ def Del_methpago():
 def Del_Ciudad():
 
     formCiudad={}
-    formCiudad['nombre']=(input("Ingrese nombre de la Ciudad: ").capitalize())
+    print("-"*35)
+    validator.listar_ciudad()
+    print("-"*35)
+    formCiudad['nombre']=(input("Ingrese nombre de la Ciudad a eliminar: ").capitalize())
  
     if validator.edit_Ciudad(formCiudad)=={}:
         user=Ciudad("",formCiudad['nombre'])
@@ -223,6 +238,9 @@ def Del_Ciudad():
 def Del_Almacen():
 
     formAlmacen={}
+    print("-"*35)
+    validator.listar_almacen()
+    print("-"*35)
     formAlmacen['nombre']=input("Ingrese nombre del almacen a eliminar: ")
  
     if validator.edit_Almacen(formAlmacen)=={}:
@@ -263,7 +281,10 @@ def Del_Almacen():
 def Del_Categoria():
 
     formCategoria={}
-    formCategoria['nombre']=(input("Ingrese categoria: ").capitalize())
+    print("-"*35)
+    validator.listar_categoria()
+    print("-"*35)
+    formCategoria['nombre']=(input("Ingrese categoria a eliminar: ").capitalize())
     
     if validator.edit_Categoria(formCategoria)=={}:
         user=Categoria("",formCategoria['nombre'])
